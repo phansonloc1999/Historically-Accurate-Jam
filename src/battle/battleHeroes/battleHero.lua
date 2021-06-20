@@ -7,8 +7,9 @@ function BattleHero:initialize(side, gridIndex, info, sprite)
 	self.info = info
 	self.info.hp = self.info.hp or 100
 	
+	self.isDead = false
+
 	self.sprite = sprite
-	
 	
 	self.secondsToAttack = 0
 	self.secondsPerAttack = 1
@@ -120,6 +121,10 @@ function BattleHero:takeDamage(damageType, damage)
 	print(self.side, self.gridIndex, 'ouch')
 	self.info.hp = self.info.hp - damage
 	print(self.side, self.gridIndex, 'remaining hp', self.info.hp)
+
+	if (self.info.hp <= 0) then
+		self.isDead = true
+	end
 end
 
 
