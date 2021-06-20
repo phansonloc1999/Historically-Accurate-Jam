@@ -3,29 +3,28 @@ local BattleHero = require 'src.battle.battleHeroes.battleHero'
 local Battle = {}
 
 function Battle:enter(from, allies, enemies)
-	self.allies = {
-		--BattleHero('allies', 1, {}, {1, 1, 0}),
-		--BattleHero('allies', 3, {}, {1, 1, 0}),
-		--BattleHero('allies', 5, {}, {1, 1, 0}),
-		BattleHero('allies', 7, {}, {1, 1, 0}),
-		--BattleHero('allies', 9, {}, {1, 1, 0}),
-	}
-	self.enemies = {
-		--BattleHero('enemies', 3, {}, {0, 1, 1}),
-		BattleHero('enemies', 4, {}, {0, 1, 1}),
-		BattleHero('enemies', 5, {}, {0, 1, 1}),
-		BattleHero('enemies', 6, {}, {0, 1, 1}),
-		BattleHero('enemies', 9, {}, {0, 1, 1}),
-	}
+	self.allies = {}
+	for i = 1, #allies do
+		local ally = allies[i]
+		table.insert(self.allies,
+				BattleHero('allies', ally.gridIndex, ally.hero.stats, ally.hero.skill, {1, 1, 0}))
+	end
+	
+	self.enemies = {}
+	for i = 1, #enemies do
+		local enemy = enemies[i]
+		table.insert(self.enemies,
+				BattleHero('enemies', enemy.gridIndex, enemy.hero.stats, enemy.hero.skill, {0, 1, 1}))
+	end
 end
 
 function Battle:update(dt)
 	for i, ally in ipairs(self.allies) do
 		ally:update(dt)
 	end
-	-- for i, enemy in ipairs(self.enemies) do
-	-- 	enemy:update(dt)
-	-- end
+	for i, enemy in ipairs(self.enemies) do
+		enemy:update(dt)
+	end
 
 	for index, ally in ipairs(self.allies) do
 		if (ally.isDead) then

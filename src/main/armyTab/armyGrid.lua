@@ -128,6 +128,22 @@ function ArmyGrid:switchHeroIndexPos(gridIndex1, gridIndex2)
 end
 
 
+function ArmyGrid:getAllies()
+	local allies = {}
+	
+	for i = 1, 9 do
+		if self.heroIndexes[i] ~= nil then
+			table.insert(allies, {
+				hero = gameData.heroList[self.heroIndexes[i]],
+				gridIndex = i
+			})
+		end
+	end
+	
+	return allies
+end
+
+
 function ArmyGrid:_getPosFromGridIndex(i)
 	local gx = (i - 1) % 3
 	local gy = (i - gx) / 3 - 1

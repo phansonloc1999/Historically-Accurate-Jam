@@ -33,6 +33,19 @@ function Main:update(dt)
 
 	-- Main buttons
 	if self.currentTab == 'map' then
+		if self.suit:Button('level 1', 160, 180, 60, 60).hit then
+			local enemies = {
+				{
+					hero = {
+						stats = {str = 5, dur = 5, int = 4, agi = 4},
+						skill = 'strike'
+					},
+					gridIndex = 5
+				}
+			}
+		
+			GS.switch(Battle, self.armyGrid:getAllies(), enemies)
+		end
 		
 	elseif self.currentTab == 'army' then
 		self.heroList:update(dt)
@@ -62,6 +75,7 @@ function Main:mousepressed(x, y, button)
 		
 	end
 end
+
 
 function Main:setSelection(from, index)
 	if from == nil then

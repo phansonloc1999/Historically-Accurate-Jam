@@ -1,11 +1,15 @@
 local BattleHero = Class('BattleHero')
 
-function BattleHero:initialize(side, gridIndex, info, sprite)
+function BattleHero:initialize(side, gridIndex, primaryStats, skill, sprite)
 	self.side = side
 	self.gridIndex = gridIndex
 
-	self.info = info
-	self.info.healthBar = HealthBar(self.info.hp or 100, 50, 9)
+	self.primaryStats = primaryStats
+	self.secondaryStats = {
+		attackDamage = 4 + primaryStats.str * 1,
+		hp = 20 + primaryStats.dur * 5,
+	}
+	self.healthBar = HealthBar(self.secondaryStats.hp or 100, 50, 9)
 	
 	self.isDead = false
 
@@ -32,12 +36,12 @@ function BattleHero:draw(x, y)
 	love.graphics.rectangle('fill', x, y, 60, 60)
 
 	--- TODO: replace 30 with the width of self.sprite when it's added
-	self.info.healthBar:draw(x + 30 - self.info.healthBar.width / 2, y - 20)
+	self.healthBar:draw(x + 30 - self.healthBar.width / 2, y - 20)
 end
 
 function BattleHero:attack()
 	local target = self:getTarget()
-	target:takeDamage('physical', 10)
+	target:takeDamage('physical', self.secondaryStats.attackDamage)
 end
 
 function BattleHero:castSkill()
@@ -121,10 +125,10 @@ function BattleHero:getTarget()
 end
 
 function BattleHero:takeDamage(damageType, damage)
-	self.info.healthBar.value = self.info.healthBar.value - damage
-	print(self.side, self.gridIndex, 'remaining hp', self.info.healthBar.value)
+	self.healthBar.value = self.healthBar.value - damage
+	print(self.side, self.gridIndex, 'remaining hp', self.healthBar.value)
 
-	if (self.info.healthBar.value <= 0) then
+	if (self.healthBar.value <= 0) then
 		self.isDead = true
 	end
 end
