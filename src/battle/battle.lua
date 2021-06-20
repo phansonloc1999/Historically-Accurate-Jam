@@ -27,11 +27,17 @@ function Battle:update(dt)
 	-- 	enemy:update(dt)
 	-- end
 
-	 for index, enemy in ipairs(self.enemies) do
+	for index, ally in ipairs(self.allies) do
+		if (ally.isDead) then
+			table.remove(self.allies, index)
+		end
+	end
+	
+	for index, enemy in ipairs(self.enemies) do
 		if (enemy.isDead) then
 			table.remove(self.enemies, index)
 		end
-	 end
+	end
 end
 
 function Battle:draw()
