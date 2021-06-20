@@ -118,7 +118,6 @@ function BattleHero:getTarget()
 end
 
 function BattleHero:takeDamage(damageType, damage)
-	print(self.side, self.gridIndex, 'ouch')
 	self.info.hp = self.info.hp - damage
 	print(self.side, self.gridIndex, 'remaining hp', self.info.hp)
 

@@ -1,18 +1,21 @@
 require 'globals'
 
+Main = require 'src.main.main'
 Battle = require 'src.battle.battle'
 
 function love.load()
 	GS.registerEvents()
 	
-	local allies = {
+	--local allies = {
 	
-	}
-	local enemies = {
+	--}
+	--local enemies = {
 	
-	}
+	--}
 	
-	GS.switch(Battle, {}, {})
+	--GS.switch(Battle, {}, {})
+	
+	GS.switch(Main)
 end
 
 function love.update(dt)
