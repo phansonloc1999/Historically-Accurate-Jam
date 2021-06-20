@@ -5,6 +5,7 @@ function BattleHero:initialize(side, gridIndex, info, sprite)
 	self.gridIndex = gridIndex
 
 	self.info = info
+	self.info.hp = self.info.hp or 100
 	
 	self.sprite = sprite
 	
@@ -117,6 +118,8 @@ end
 
 function BattleHero:takeDamage(damageType, damage)
 	print(self.side, self.gridIndex, 'ouch')
+	self.info.hp = self.info.hp - damage
+	print(self.side, self.gridIndex, 'remaining hp', self.info.hp)
 end
 
 
