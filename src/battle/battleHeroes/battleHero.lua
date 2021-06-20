@@ -5,7 +5,7 @@ function BattleHero:initialize(side, gridIndex, info, sprite)
 	self.gridIndex = gridIndex
 
 	self.info = info
-	self.info.hp = self.info.hp or 100
+	self.info.healthBar = HealthBar(self.info.hp or 100, 50, 9)
 	
 	self.isDead = false
 
@@ -30,6 +30,9 @@ end
 function BattleHero:draw(x, y)
 	love.graphics.setColor(self.sprite)
 	love.graphics.rectangle('fill', x, y, 60, 60)
+
+	--- TODO: replace 30 with the width of self.sprite when it's added
+	self.info.healthBar:draw(x + 30 - self.info.healthBar.width / 2, y - 20)
 end
 
 function BattleHero:attack()
@@ -118,10 +121,10 @@ function BattleHero:getTarget()
 end
 
 function BattleHero:takeDamage(damageType, damage)
-	self.info.hp = self.info.hp - damage
-	print(self.side, self.gridIndex, 'remaining hp', self.info.hp)
+	self.info.healthBar.value = self.info.healthBar.value - damage
+	print(self.side, self.gridIndex, 'remaining hp', self.info.healthBar.value)
 
-	if (self.info.hp <= 0) then
+	if (self.info.healthBar.value <= 0) then
 		self.isDead = true
 	end
 end
