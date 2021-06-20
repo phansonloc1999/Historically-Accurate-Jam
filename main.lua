@@ -23,6 +23,27 @@ function love.load()
 				skill = 'regenerate',
 				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
 			},
+			{
+				unlocked = true,
+				name = 'Son Tinh',
+				stats = {str = 9, dur = 9, int = 4, agi = 6},
+				skill = 'smash',
+				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
+			},
+			{
+				unlocked = true,
+				name = 'Thuy Tinh',
+				stats = {str = 12, dur = 4, int = 2, agi = 10},
+				skill = 'rend',
+				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
+			},
+			{
+				unlocked = true,
+				name = 'Hung Vuong',
+				stats = {str = 6, dur = 13, int = 6, agi = 3},
+				skill = 'mandate',
+				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
+			},
 		},
 		
 		levels = {

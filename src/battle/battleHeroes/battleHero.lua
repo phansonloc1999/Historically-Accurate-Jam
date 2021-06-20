@@ -7,11 +7,11 @@ function BattleHero:initialize(side, gridIndex, primaryStats, skill, sprite)
 	self.primaryStats = primaryStats
 	self.secondaryStats = {
 		attackDamage = 4 + primaryStats.str * 1,
-		secondsPerAttack = 5 / (10 + primaryStats.agi),
+		secondsPerAttack = 15 / (10 + primaryStats.agi),
 		
 		magicPower = 4 + primaryStats.int * 1,
 		
-		hp = 25 + primaryStats.dur * 10,
+		hp = 40 + primaryStats.dur * 12,
 		armor = 0 + primaryStats.agi * 0.5,
 		magicResist = 0 + primaryStats.int * 0.75
 	}
@@ -24,7 +24,6 @@ function BattleHero:initialize(side, gridIndex, primaryStats, skill, sprite)
 	self.sprite = sprite
 	
 	self.secondsToAttack = 0
-	self.secondsPerAttack = 1
 	
 	self.mana = 0
 end
@@ -35,7 +34,7 @@ function BattleHero:update(dt)
 	if self.secondsToAttack <= 0 then
 		self:attack()
 		
-		self.secondsToAttack = self.secondsPerAttack
+		self.secondsToAttack = self.secondaryStats.secondsPerAttack
 	end
 end
 
@@ -48,24 +47,53 @@ function BattleHero:draw(x, y)
 end
 
 function BattleHero:attack()
-	local target = self:getTarget()
-	target:takeDamage('physical', self.secondaryStats.attackDamage)
+	if self.mana >= 8 and self.isDead == false then
+		self.mana = 0
+		self:castSkill(self.skill)
 	
-	self:addMana(1)
+	else
+		local target = self:getTarget()
+		target:takeDamage('physical', self.secondaryStats.attackDamage)
+
+		self:addMana(1)
+	end
 end
 
 function BattleHero:castSkill(skill)
 	print('use skill '..skill)
 
-	if skill == 'strike' then
+	if skill == 'strike' then -------------------
 		local target = self:getTarget()
 		target:takeDamage('magical', self.secondaryStats.magicPower * 2.25)
 		
-	elseif skill == 'regenerate' then
+		
+	elseif skill == 'regenerate' then -----------
 		local teamates = self:getAllTeamates()
 		for i = 1, #teamates do
 			teamates[i]:heal(self.secondaryStats.magicPower * 0.6)
 		end
+		
+		
+	elseif skill == 'smash' then ----------------
+		local mainTargetY = math.floor(self:getTarget().gridIndex / 3)
+		 
+		local targets = self:getAllTargets()
+		for i = 1, #targets do
+			local targetY = math.floor(targets[i].gridIndex / 3)
+			
+			if targetY == mainTargetY then
+				targets[i]:takeDamage('magical', self.secondaryStats.magicPower * 1.4)
+			end
+		end
+	
+	
+	elseif skill == 'rend' then -----------------
+		local target = self:getTarget()
+		target:takeDamage('physical', self.secondaryStats.attackDamage * 2.0)
+		
+	
+	elseif skill == 'mandate' then --------------
+		-- buff allies attack speed
 		
 	end
 end
@@ -184,11 +212,6 @@ end
 
 function BattleHero:addMana(num)
 	self.mana = self.mana + num
-	
-	if self.mana >= 4 and self.isDead == false then
-		self.mana = 0
-		self:castSkill(self.skill)
-	end
 end
 
 function BattleHero:_getHeroFromGridIndex(side, gridIndex)
