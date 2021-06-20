@@ -7,8 +7,16 @@ function BattleHero:initialize(side, gridIndex, primaryStats, skill, sprite)
 	self.primaryStats = primaryStats
 	self.secondaryStats = {
 		attackDamage = 4 + primaryStats.str * 1,
-		hp = 20 + primaryStats.dur * 5,
+		secondsPerAttack = 5 / (10 + primaryStats.agi),
+		
+		magicPower = 4 + primaryStats.int * 1,
+		
+		hp = 25 + primaryStats.dur * 10,
+		armor = 0 + primaryStats.agi * 0.5,
+		magicResist = 0 + primaryStats.int * 0.75
 	}
+	self.skill = skill
+	
 	self.healthBar = HealthBar(self.secondaryStats.hp or 100, 50, 9)
 	
 	self.isDead = false
@@ -42,10 +50,24 @@ end
 function BattleHero:attack()
 	local target = self:getTarget()
 	target:takeDamage('physical', self.secondaryStats.attackDamage)
+	
+	self:addMana(1)
 end
 
-function BattleHero:castSkill()
-	
+function BattleHero:castSkill(skill)
+	print('use skill '..skill)
+
+	if skill == 'strike' then
+		local target = self:getTarget()
+		target:takeDamage('magical', self.secondaryStats.magicPower * 2.25)
+		
+	elseif skill == 'regenerate' then
+		local teamates = self:getAllTeamates()
+		for i = 1, #teamates do
+			teamates[i]:heal(self.secondaryStats.magicPower * 0.6)
+		end
+		
+	end
 end
 
 
@@ -124,15 +146,50 @@ function BattleHero:getTarget()
 	end
 end
 
+function BattleHero:getAllTargets()
+	local targetSide
+	if self.side == 'allies' then targetSide = 'enemies'
+	elseif self.side == 'enemies' then targetSide = 'allies'
+	end
+	
+	return GS.current()[targetSide]
+end
+
+function BattleHero:getAllTeamates()
+	return GS.current()[self.side]
+end
+
 function BattleHero:takeDamage(damageType, damage)
-	self.healthBar.value = self.healthBar.value - damage
+	local totalDamage
+	if damageType == 'physical' then
+		totalDamage = damage - self.secondaryStats.armor
+	elseif damageType == 'magical' then
+		totalDamage = damage - self.secondaryStats.magicResist
+	end
+	if totalDamage < 1 then totalDamage = 1 end
+	
+	self.healthBar.value = self.healthBar.value - totalDamage
 	print(self.side, self.gridIndex, 'remaining hp', self.healthBar.value)
 
 	if (self.healthBar.value <= 0) then
 		self.isDead = true
 	end
+	
+	self:addMana(1)
 end
 
+function BattleHero:heal(healAmmount)
+	
+end
+
+function BattleHero:addMana(num)
+	self.mana = self.mana + num
+	
+	if self.mana >= 4 and self.isDead == false then
+		self.mana = 0
+		self:castSkill(self.skill)
+	end
+end
 
 function BattleHero:_getHeroFromGridIndex(side, gridIndex)
 	local heroes = GS.current()[side]
