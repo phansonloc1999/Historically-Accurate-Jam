@@ -60,7 +60,7 @@ function Battle:getWorldPosFromGridIndex(side, gridIndex)
 	end
 	
 	local gx = (gridIndex - 1) % 3
-	local gy = (gridIndex - gx) / 3
+	local gy = (gridIndex - gx) / 3 - 1
 	
 	return ox + gx * 80 * mul, 100 + gy * 80
 end
