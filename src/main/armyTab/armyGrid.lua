@@ -10,7 +10,7 @@ end
 
 function ArmyGrid:draw()
 	for i = 1, 9 do
-		local x, y = self:_getPosFromDataIndex(i)
+		local x, y = self:_getPosFromGridIndex(i)
 		local mx, my = love.mouse.getPosition()
 		
 		if x < mx and mx < x + 60 and y < my and my < y + 60 then
@@ -35,7 +35,7 @@ end
 
 function ArmyGrid:mousepressed(mx, my, button)
 	for i = 1, 9 do
-		local x, y = self:_getPosFromDataIndex(i)
+		local x, y = self:_getPosFromGridIndex(i)
 		local mx, my = love.mouse.getPosition()
 		
 		if x < mx and mx < x + 60 and y < my and my < y + 60 then
@@ -54,15 +54,18 @@ function ArmyGrid:mousepressed(mx, my, button)
 								GS.current():setSelection(nil)
 								
 							elseif selection.index ~= i then
-								self.heroIndexes[i] = self.heroIndexes[selection.index]
-								self.heroIndexes[selection.index] = nil
+								local heroIndex = self.heroIndexes[selection.index]
+							
+								self:removeHeroIndexFromGrid(selection.index)
+								self:addHeroIndexToGrid(heroIndex, i)
+								
 								GS.current():setSelection(nil)
 								
 							end
 						
 						elseif selection.from == 'hero list' then
 							if self:_getArmySize() <= 5 then
-								self.heroIndexes[i] = selection.index
+								self:addHeroIndexToGrid(selection.index, i)
 								
 								GS.current():setSelection(nil)
 								
@@ -81,9 +84,11 @@ function ArmyGrid:mousepressed(mx, my, button)
 						
 					elseif selection ~= nil then
 						if selection.from == 'army grid' then
-							self.heroIndexes[i], self.heroIndexes[selection.index] = self.heroIndexes[selection.index], self.heroIndexes[i]
+							self:switchHeroIndexPos(i, selection.index)
+							
 						elseif selection.from == 'hero list' then
-							self.heroIndexes[i] = selection.index
+							self:addHeroIndexToGrid(selection.index, i)
+							
 						end
 						GS.current():setSelection(nil)
 						
@@ -100,7 +105,30 @@ function ArmyGrid:mousepressed(mx, my, button)
 end
 
 
-function ArmyGrid:_getPosFromDataIndex(i)
+function ArmyGrid:addHeroIndexToGrid(heroIndex, gridIndex)
+	for i = 1, 9 do
+		if self.heroIndexes[i] == heroIndex then
+			return false
+		end
+	end
+	
+	self.heroIndexes[gridIndex] = heroIndex
+end
+
+function ArmyGrid:removeHeroIndexFromGrid(gridIndex)
+	for i = 1, 9 do
+		if i == gridIndex then
+			self.heroIndexes[i] = nil
+		end
+	end
+end
+
+function ArmyGrid:switchHeroIndexPos(gridIndex1, gridIndex2)
+	self.heroIndexes[gridIndex1], self.heroIndexes[gridIndex2] = self.heroIndexes[gridIndex2], self.heroIndexes[gridIndex1]
+end
+
+
+function ArmyGrid:_getPosFromGridIndex(i)
 	local gx = (i - 1) % 3
 	local gy = (i - gx) / 3 - 1
 	

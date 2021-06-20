@@ -50,9 +50,9 @@ function love.load()
 	
 	--}
 	
-	GS.switch(Battle, {}, {})
+	--GS.switch(Battle, {}, {})
 	
-	-- GS.switch(Main)
+	 GS.switch(Main)
 end
 
 function love.update(dt)
