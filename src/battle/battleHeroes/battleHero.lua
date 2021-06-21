@@ -197,7 +197,7 @@ function BattleHero:takeDamage(damageType, damage)
 	if totalDamage < 1 then totalDamage = 1 end
 	
 	self.healthBar.value = self.healthBar.value - totalDamage
-	print(self.side, self.gridIndex, 'remaining hp', self.healthBar.value)
+	--print(self.side, self.gridIndex, 'remaining hp', self.healthBar.value)
 
 	if (self.healthBar.value <= 0) then
 		self.isDead = true
@@ -207,7 +207,11 @@ function BattleHero:takeDamage(damageType, damage)
 end
 
 function BattleHero:heal(healAmmount)
+	self.healthBar.value = self.healthBar.value + healAmmount
 	
+	if self.healthBar.value > self.secondaryStats.hp then
+		self.healthBar.value = self.secondaryStats.hp
+	end
 end
 
 function BattleHero:addMana(num)
