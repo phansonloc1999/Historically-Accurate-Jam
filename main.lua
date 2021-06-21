@@ -1,4 +1,5 @@
 require 'globals'
+require 'assets'
 
 Main = require 'src.main.main'
 Battle = require 'src.battle.battle'

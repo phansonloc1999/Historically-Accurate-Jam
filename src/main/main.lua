@@ -20,13 +20,22 @@ end
 
 function Main:update(dt)
 	-- Tabs buttons
-	if self.suit:Button('MAP', 0, 0, 130, 230).hit then
+	love.graphics.setColor(1, 1, 1)
+	if self.suit:ImageButton(Sprites.gui.main.map_normal,
+			{hovered = Sprites.gui.main.map_hovered, active = Sprites.gui.main.map_active},
+			0, 6).hit then
 		self.currentTab = 'map'
 	end
-	if self.suit:Button('ARMY', 0, 230, 130, 230).hit then
+	
+	if self.suit:ImageButton(Sprites.gui.main.army_normal,
+			{hovered = Sprites.gui.main.army_hovered, active = Sprites.gui.main.army_active},
+			0, 236).hit then
 		self.currentTab = 'army'
 	end
-	if self.suit:Button('MENU', 0, 460, 130, 80).hit then
+	
+	if self.suit:ImageButton(Sprites.gui.main.menu_normal,
+			{hovered = Sprites.gui.main.menu_hovered, active = Sprites.gui.main.menu_active},
+			0, 466).hit then
 	
 	end
 	
@@ -55,6 +64,7 @@ function Main:update(dt)
 end
 
 function Main:draw()
+	love.graphics.setColor(1, 1, 1)
 	self.suit:draw()
 	
 	if self.currentTab == 'map' then
