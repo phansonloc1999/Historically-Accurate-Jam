@@ -1,3 +1,7 @@
+-- package.cpath = package.cpath .. ";/home/sonloc/.vscode/extensions/tangzx.emmylua-0.3.49/debugger/emmy/linux/emmy_core.so"
+-- local dbg = require("emmy_core")
+-- dbg.tcpListen("localhost", 9966)
+
 require 'globals'
 require 'assets'
 

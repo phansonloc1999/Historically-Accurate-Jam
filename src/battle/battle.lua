@@ -1,4 +1,5 @@
 local BattleHero = require 'src.battle.battleHeroes.battleHero'
+local Result = require 'src.result.result'
 
 local Battle = {}
 
@@ -19,6 +20,12 @@ function Battle:enter(from, allies, enemies)
 end
 
 function Battle:update(dt)
+	if (#self.enemies <= 0) then
+		GS.switch(Result, "Player wins!")
+	elseif (#self.allies <= 0) then
+		GS.switch(Result, "Enemy wins!")
+	end
+
 	for i, ally in ipairs(self.allies) do
 		ally:update(dt)
 	end
