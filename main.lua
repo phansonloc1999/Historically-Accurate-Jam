@@ -28,7 +28,8 @@ function love.load()
 				unlocked = true,
 				
 				name = 'Au Co',
-				sprite = Sprites.heroes.auCo,
+				sprite = Sprites.heroes.auCo.full,
+				icon = Sprites.heroes.auCo.icon,
 				
 				stats = {str = 5, dur = 4, int = 14, agi = 4},
 				skill = 'regenerate',
@@ -38,7 +39,8 @@ function love.load()
 				unlocked = true,
 				
 				name = 'Son Tinh',
-				sprite = Sprites.heroes.sonTinh,
+				sprite = Sprites.heroes.sonTinh.full,
+				icon = Sprites.heroes.sonTinh.icon,
 				
 				stats = {str = 9, dur = 9, int = 4, agi = 6},
 				skill = 'smash',
@@ -48,7 +50,8 @@ function love.load()
 				unlocked = true,
 				
 				name = 'Thuy Tinh',
-				sprite = Sprites.heroes.thuyTinh,
+				sprite = Sprites.heroes.thuyTinh.full,
+				icon = Sprites.heroes.thuyTinh.icon,
 				
 				stats = {str = 12, dur = 4, int = 2, agi = 10},
 				skill = 'rend',
@@ -58,7 +61,8 @@ function love.load()
 				unlocked = true,
 				
 				name = 'Hung Vuong',
-				sprite = Sprites.heroes.hungVuong,
+				sprite = Sprites.heroes.hungVuong.full,
+				icon = Sprites.heroes.hungVuong.icon,
 				
 				stats = {str = 6, dur = 13, int = 6, agi = 3},
 				skill = 'mandate',

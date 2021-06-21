@@ -14,12 +14,18 @@ function HeroSelection:draw()
 			hero = gameData.heroList[GS.current().armyGrid.heroIndexes[selection.index]]
 		end
 	
+	
 		love.graphics.setColor(1, 1, 1)
-		love.graphics.print(hero.name, 180, 320)
-		love.graphics.print('strength: '..tostring(hero.stats.str), 180, 340)
-		love.graphics.print('durability: '..tostring(hero.stats.dur), 180, 360)
-		love.graphics.print('intelligence: '..tostring(hero.stats.int), 180, 380)
-		love.graphics.print('agility: '..tostring(hero.stats.agi), 180, 400)
+		if hero.sprite ~= nil then
+			love.graphics.draw(hero.sprite, 230, 384, 0, 3, 3, hero.sprite:getWidth()/2)
+		end
+	
+		--love.graphics.setFont(Fonts.main.heroSelectionBig)
+		love.graphics.printf(hero.name, 170, 360, 120, 'center')
+		love.graphics.print('strength: '..tostring(hero.stats.str), 380, 340)
+		love.graphics.print('durability: '..tostring(hero.stats.dur), 380, 360)
+		love.graphics.print('intelligence: '..tostring(hero.stats.int), 380, 380)
+		love.graphics.print('agility: '..tostring(hero.stats.agi), 380, 400)
 	end
 end
 

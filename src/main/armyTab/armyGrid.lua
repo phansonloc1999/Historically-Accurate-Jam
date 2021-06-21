@@ -15,8 +15,14 @@ function ArmyGrid:draw()
 		-- Actual icon
 		love.graphics.setColor(1, 1, 1)
 		if self.heroIndexes[i] ~= nil then
+			local hero = self:getHeroFromHeroIndex(self.heroIndexes[i])
+		
 			love.graphics.draw(Sprites.gui.main.occupiedSlot, x, y, 0, 2, 2)
-			love.graphics.print(self.heroIndexes[i], x, y)
+			if hero.icon ~= nil then
+				love.graphics.draw(hero.icon, x, y, 0, 4, 4)
+			else
+				love.graphics.print(self.heroIndexes[i], x, y)
+			end
 			love.graphics.draw(Sprites.gui.main.occupiedSlotFrame, x, y, 0, 2, 2)
 			
 		else
@@ -150,6 +156,9 @@ function ArmyGrid:getAllies()
 	return allies
 end
 
+function ArmyGrid:getHeroFromHeroIndex(heroIndex)
+	return gameData.heroList[heroIndex]
+end
 
 function ArmyGrid:_getPosFromGridIndex(i)
 	local gx = (i - 1) % 3
