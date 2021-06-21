@@ -11,25 +11,32 @@ end
 function ArmyGrid:draw()
 	for i = 1, 9 do
 		local x, y = self:_getPosFromGridIndex(i)
+	
+		-- Actual icon
+		love.graphics.setColor(1, 1, 1)
+		if self.heroIndexes[i] ~= nil then
+			love.graphics.draw(Sprites.gui.main.occupiedSlot, x, y, 0, 2, 2)
+			love.graphics.print(self.heroIndexes[i], x, y)
+			love.graphics.draw(Sprites.gui.main.occupiedSlotFrame, x, y, 0, 2, 2)
+			
+		else
+			love.graphics.draw(Sprites.gui.main.emptySlot, x, y, 0, 2, 2)
+		end
+		
+		
+		-- Mouse hover and down effect
 		local mx, my = love.mouse.getPosition()
 		
-		if x < mx and mx < x + 60 and y < my and my < y + 60 then
+		if x < mx and mx < x + 80 and y < my and my < y + 80 then
 			if love.mouse.isDown(1) then
-				love.graphics.setColor(0.74, 0.6, 0.3)
+				love.graphics.setColor(0, 0, 0, 0.11)
 			else
-				love.graphics.setColor(0.4, 0.53, 0.69)
+				love.graphics.setColor(1, 1, 1, 0.075)
 			end
 		else
-			love.graphics.setColor(0.2, 0.2, 0.16)
+			love.graphics.setColor(0, 0, 0, 0)
 		end
-		
-		love.graphics.rectangle('fill', x, y, 60, 60)
-		
-		if self.heroIndexes[i] ~= nil then
-			love.graphics.setColor(1, 1, 1)
-			love.graphics.print(self.heroIndexes[i], x, y)
-		end
-		
+		love.graphics.rectangle('fill', x, y, 80, 80)
 	end
 end
 
@@ -38,7 +45,7 @@ function ArmyGrid:mousepressed(mx, my, button)
 		local x, y = self:_getPosFromGridIndex(i)
 		local mx, my = love.mouse.getPosition()
 		
-		if x < mx and mx < x + 60 and y < my and my < y + 60 then
+		if x < mx and mx < x + 80 and y < my and my < y + 80 then
 		
 			if button == 1 then
 				local selection = GS.current().selection
@@ -146,9 +153,9 @@ end
 
 function ArmyGrid:_getPosFromGridIndex(i)
 	local gx = (i - 1) % 3
-	local gy = (i - gx) / 3 - 1
+	local gy = (i - gx - 1) / 3
 	
-	return 220 + gx * 80, 120 + gy * 80
+	return 205 + gx * 104, 16 + gy * 96
 end
 
 function ArmyGrid:_getArmySize()

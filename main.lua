@@ -16,35 +16,50 @@ function love.load()
 		heroList = {
 			{
 				unlocked = true,
+				
 				name = 'Lac Long Quan',
+				sprite = nil,
+				
 				stats = {str = 5, dur = 12, int = 8, agi = 3},
 				skill = 'strike',
 				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
 			},
 			{
 				unlocked = true,
+				
 				name = 'Au Co',
+				sprite = Sprites.heroes.auCo,
+				
 				stats = {str = 5, dur = 4, int = 14, agi = 4},
 				skill = 'regenerate',
 				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
 			},
 			{
 				unlocked = true,
+				
 				name = 'Son Tinh',
+				sprite = Sprites.heroes.sonTinh,
+				
 				stats = {str = 9, dur = 9, int = 4, agi = 6},
 				skill = 'smash',
 				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
 			},
 			{
 				unlocked = true,
+				
 				name = 'Thuy Tinh',
+				sprite = Sprites.heroes.thuyTinh,
+				
 				stats = {str = 12, dur = 4, int = 2, agi = 10},
 				skill = 'rend',
 				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
 			},
 			{
 				unlocked = true,
+				
 				name = 'Hung Vuong',
+				sprite = Sprites.heroes.hungVuong,
+				
 				stats = {str = 6, dur = 13, int = 6, agi = 3},
 				skill = 'mandate',
 				upgrades = {str = 0, dur = 0, int = 0, agi = 0},

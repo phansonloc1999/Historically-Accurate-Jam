@@ -64,6 +64,8 @@ function Main:update(dt)
 end
 
 function Main:draw()
+	love.graphics.setBackgroundColor(41/255, 37/255, 57/255)
+
 	love.graphics.setColor(1, 1, 1)
 	self.suit:draw()
 	
@@ -82,6 +84,15 @@ function Main:mousepressed(x, y, button)
 		
 	elseif self.currentTab == 'army' then
 		self.armyGrid:mousepressed(x, y, button)
+		
+	end
+end
+
+function Main:wheelmoved(x, y)
+	if self.currentTab == 'map' then
+		
+	elseif self.currentTab == 'army' then
+		self.heroList:wheelmoved(x, y)
 		
 	end
 end
