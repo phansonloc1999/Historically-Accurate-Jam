@@ -13,7 +13,7 @@ gameData = nil
 
 function love.load()
 	gameData = {
-		star = 50,
+		crystals = 500,
 		heroList = {
 			{
 				unlocked = true,

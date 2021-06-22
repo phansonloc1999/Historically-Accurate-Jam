@@ -1,19 +1,25 @@
 local BattleHero = Class('BattleHero')
 
-function BattleHero:initialize(side, gridIndex, primaryStats, skill, sprite)
+function BattleHero:initialize(side, gridIndex, stats, upgrades, skill, sprite)
 	self.side = side
 	self.gridIndex = gridIndex
 
-	self.primaryStats = primaryStats
+	local upgrades = upgrades or {str = 0, dur = 0, int = 0, agi = 0}
+	self.primaryStats = {
+		str = stats.str + upgrades.str,
+		dur = stats.dur + upgrades.dur,
+		int = stats.int + upgrades.int,
+		agi = stats.agi + upgrades.agi,
+	}
 	self.secondaryStats = {
-		attackDamage = 4 + primaryStats.str * 1,
-		secondsPerAttack = 15 / (10 + primaryStats.agi),
+		attackDamage = 4 + self.primaryStats.str * 1,
+		secondsPerAttack = 15 / (10 + self.primaryStats.agi),
 		
-		magicPower = 4 + primaryStats.int * 1,
+		magicPower = 4 + self.primaryStats.int * 1,
 		
-		hp = 40 + primaryStats.dur * 12,
-		armor = 0 + primaryStats.agi * 0.5,
-		magicResist = 0 + primaryStats.int * 0.75
+		hp = 40 + self.primaryStats.dur * 12,
+		armor = 0 + self.primaryStats.agi * 0.5,
+		magicResist = 0 + self.primaryStats.int * 0.75
 	}
 	self.skill = skill
 	

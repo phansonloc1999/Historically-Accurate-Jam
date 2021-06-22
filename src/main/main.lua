@@ -1,6 +1,7 @@
 local HeroList = require 'src.main.armyTab.heroList'
 local ArmyGrid = require 'src.main.armyTab.armyGrid'
 local HeroSelection = require 'src.main.armyTab.heroSelection'
+local UpgradeSystem = require 'src.main.armyTab.upgradeSystem'
 
 local Main = {}
 
@@ -14,6 +15,7 @@ function Main:enter(from)
 	self.heroList = HeroList(gameData.heroList)
 	self.armyGrid = ArmyGrid()
 	self.heroSelection = HeroSelection()
+	self.upgradeSystem = UpgradeSystem()
 	
 	self.suit = Suit.new()
 end
@@ -61,6 +63,7 @@ function Main:update(dt)
 		self.heroList:update(dt)
 		self.armyGrid:update(dt)
 		self.heroSelection:update(dt)
+		self.upgradeSystem:update(dt)
 		
 	end
 end
@@ -72,6 +75,7 @@ function Main:draw()
 		self.heroList:draw()
 		self.armyGrid:draw()
 		self.heroSelection:draw()
+		self.upgradeSystem:draw()
 		
 	end
 	

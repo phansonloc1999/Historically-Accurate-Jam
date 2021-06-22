@@ -5,22 +5,7 @@ function HeroSelection:initialize()
 end
 
 function HeroSelection:update(dt)
-	local selection = GS.current().selection
 	
-	if selection ~= nil then
-		if self.suit:Button('', 440, 378, 90, 28).hit then
-		
-		end
-		if self.suit:Button('', 440, 414, 90, 28).hit then
-		
-		end
-		if self.suit:Button('', 440, 450, 90, 28).hit then
-		
-		end
-		if self.suit:Button('', 440, 486, 90, 28).hit then
-		
-		end
-	end
 end
 
 function HeroSelection:draw()
@@ -59,16 +44,16 @@ function HeroSelection:draw()
 		
 		love.graphics.setFont(Fonts.main.heroSelectionMedium)
 		love.graphics.draw(Sprites.gui.main.strength, 300, 378, 0, 2, 2)
-		love.graphics.print(tostring(hero.stats.str), 340, 384)
+		love.graphics.print(tostring(hero.stats.str + hero.upgrades.str), 340, 384)
 		
 		love.graphics.draw(Sprites.gui.main.intelligence, 300, 414, 0, 2, 2)
-		love.graphics.print(tostring(hero.stats.int), 340, 420)
+		love.graphics.print(tostring(hero.stats.int + hero.upgrades.int), 340, 420)
 		
 		love.graphics.draw(Sprites.gui.main.agility, 300, 450, 0, 2, 2)
-		love.graphics.print(tostring(hero.stats.agi), 340, 456)
+		love.graphics.print(tostring(hero.stats.agi + hero.upgrades.agi), 340, 456)
 		
 		love.graphics.draw(Sprites.gui.main.durability, 300, 486, 0, 2, 2)
-		love.graphics.print(tostring(hero.stats.dur), 340, 492)
+		love.graphics.print(tostring(hero.stats.dur + hero.upgrades.dur), 340, 492)
 	end
 	
 	self.suit:draw()
