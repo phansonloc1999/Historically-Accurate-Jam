@@ -9,14 +9,6 @@ function HeroSelection:update(dt)
 end
 
 function HeroSelection:draw()
-	-- Draw background
-	--love.graphics.setColor(46/255, 59/255, 84/255)
-	--love.graphics.rectangle('fill', 126, 320, 448, 44)
-	love.graphics.setColor(1, 1, 1)
-	love.graphics.draw(Sprites.gui.main.selectionBackground, 126, 320, 0, 2, 2)
-	
-	
-	-- Draw hero and hero info
 	local selection = GS.current().selection
 	
 	if selection ~= nil then
@@ -27,7 +19,12 @@ function HeroSelection:draw()
 			hero = gameData.heroList[GS.current().armyGrid.heroIndexes[selection.index]]
 		end
 	
+		-- Draw background
+		love.graphics.setColor(1, 1, 1)
+		love.graphics.draw(Sprites.gui.main.selectionBackground, 126, 320, 0, 2, 2)
 	
+	
+		-- Draw hero and hero info
 		love.graphics.setColor(1, 1, 1)
 		love.graphics.setFont(Fonts.main.heroSelectionBig)
 		
