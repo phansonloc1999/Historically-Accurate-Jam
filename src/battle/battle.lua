@@ -8,14 +8,14 @@ function Battle:enter(from, allies, enemies)
 	for i = 1, #allies do
 		local ally = allies[i]
 		table.insert(self.allies,
-				BattleHero('allies', ally.gridIndex, ally.hero.stats, ally.hero.skill, {1, 1, 0}))
+				BattleHero('allies', ally.gridIndex, ally.hero.stats, ally.hero.skill, ally.hero.sprite))
 	end
 	
 	self.enemies = {}
 	for i = 1, #enemies do
 		local enemy = enemies[i]
 		table.insert(self.enemies,
-				BattleHero('enemies', enemy.gridIndex, enemy.hero.stats, enemy.hero.skill, {0, 1, 1}))
+				BattleHero('enemies', enemy.gridIndex, enemy.hero.stats, enemy.hero.skill, enemy.hero.sprite))
 	end
 end
 

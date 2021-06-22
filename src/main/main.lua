@@ -47,7 +47,8 @@ function Main:update(dt)
 				{
 					hero = {
 						stats = {str = 5, dur = 5, int = 4, agi = 4},
-						skill = 'strike'
+						skill = 'strike',
+						sprite = Sprites.heroes.thuyTinh.icon
 					},
 					gridIndex = 5
 				}

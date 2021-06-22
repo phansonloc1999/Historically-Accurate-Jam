@@ -39,11 +39,11 @@ function BattleHero:update(dt)
 end
 
 function BattleHero:draw(x, y)
-	love.graphics.setColor(self.sprite)
-	love.graphics.rectangle('fill', x, y, 60, 60)
+	love.graphics.setColor(255, 255, 255)
+	love.graphics.draw(self.sprite, x, y, 0, 2)
 
 	--- TODO: replace 30 with the width of self.sprite when it's added
-	self.healthBar:draw(x + 30 - self.healthBar.width / 2, y - 20)
+	self.healthBar:draw(x + self.sprite:getWidth() - self.healthBar.width / 2, y - 20)
 end
 
 function BattleHero:attack()
