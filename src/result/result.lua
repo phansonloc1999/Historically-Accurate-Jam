@@ -10,7 +10,7 @@ function Result:update(dt)
 end
 
 function Result:draw()
-		self.from:draw()
+	self.from:draw()
 		
     love.graphics.setNewFont(30)
     love.graphics.print(self.message)

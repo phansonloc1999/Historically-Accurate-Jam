@@ -19,7 +19,8 @@ function love.load()
 				unlocked = true,
 				
 				name = 'Lac Long Quan',
-				sprite = nil,
+				sprite = Sprites.heroes.lacLongQuan.full,
+				icon = Sprites.heroes.lacLongQuan.icon,
 				
 				stats = {str = 5, dur = 12, int = 8, agi = 3},
 				skill = 'strike',
@@ -69,6 +70,28 @@ function love.load()
 				skill = 'mandate',
 				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
 			},
+			{
+				unlocked = true,
+
+				name = 'Chu Dong Tu',
+				sprite = Sprites.heroes.chuDongTu.full,
+				icon = Sprites.heroes.chuDongTu.icon,
+
+				stats = {str = 6, dur = 6, int = 6, agi = 6},
+				skill = '',
+				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
+			},
+			{
+				unlocked = true,
+
+				name = 'Thach Sanh',
+				sprite = Sprites.heroes.thachSanh.full,
+				icon = Sprites.heroes.thachSanh.icon,
+
+				stats = {str = 6, dur = 6, int = 6, agi = 6},
+				skill = '',
+				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
+			}
 		},
 		
 		levels = {

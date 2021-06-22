@@ -53,6 +53,18 @@ Sprites = {
 			full = love.graphics.newImage('assets/heroes/Hung Vuong.png'),
 			icon = love.graphics.newImage('assets/heroes/Hung Vuong_icon.png')
 		},
+		thachSanh = {
+			full = love.graphics.newImage('assets/heroes/Thach Sanh.png'),
+			icon = love.graphics.newImage('assets/heroes/Thach Sanh_icon.png')
+		},
+		lacLongQuan = {
+			full = love.graphics.newImage('assets/heroes/Lac Long Quan.png'),
+			icon = love.graphics.newImage('assets/heroes/Lac Long Quan_icon.png')
+		},
+		chuDongTu = {
+			full = love.graphics.newImage('assets/heroes/Chu Dong Tu.png'),
+			icon = love.graphics.newImage('assets/heroes/Chu Dong Tu_icon.png')
+		}
 	}
 }
 
