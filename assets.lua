@@ -2,6 +2,7 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 
 Sprites = {
 	gui = {
+		crysta = love.graphics.newImage('assets/gui/main/crysta.png'),
 		main = {
 			map_normal = love.graphics.newImage('assets/gui/main/map_normal.png'),
 			map_hovered = love.graphics.newImage('assets/gui/main/map_hovered.png'),
@@ -27,7 +28,11 @@ Sprites = {
 			intelligence = love.graphics.newImage('assets/gui/main/intelligence.png'),
 			agility = love.graphics.newImage('assets/gui/main/agility.png'),
 			
-			selectionBackground = love.graphics.newImage('assets/gui/main/selectionBackground.png')
+			selectionBackground = love.graphics.newImage('assets/gui/main/selectionBackground.png'),
+			
+			upgradeButton_normal = love.graphics.newImage('assets/gui/main/upgradeButton_normal.png'),
+			upgradeButton_hovered = love.graphics.newImage('assets/gui/main/upgradeButton_hovered.png'),
+			upgradeButton_active = love.graphics.newImage('assets/gui/main/upgradeButton_active.png'),
 		}
 	},
 	
