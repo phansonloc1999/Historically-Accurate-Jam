@@ -81,7 +81,7 @@ function ArmyGrid:mousepressed(mx, my, button)
 							end
 						
 						elseif selection.from == 'hero list' then
-							if self:_getArmySize() <= 5 then
+							if self:_getArmySize() <= 4 then
 								self:addHeroIndexToGrid(selection.index, i)
 								
 								GS.current():setSelection(nil)

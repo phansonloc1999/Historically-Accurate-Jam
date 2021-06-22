@@ -64,7 +64,7 @@ function HeroList:wheelmoved(x, y)
 	if mx > 580 then
 		if y > 0 and self.y < 40 then
 			self.y = self.y + self.scrollSpeed
-		elseif y < 0 and self.y > - self.scrollSpeed * 6 then
+		elseif y < 0 and self.y > - self.scrollSpeed * 2 then
 			self.y = self.y - self.scrollSpeed
 		end
 	end

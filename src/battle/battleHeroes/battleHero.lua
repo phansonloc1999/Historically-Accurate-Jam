@@ -1,3 +1,5 @@
+local DamagePopUp = require 'src.battle.battleHeroes.damagePopUp'
+
 local BattleHero = Class('BattleHero')
 
 function BattleHero:initialize(side, gridIndex, stats, upgrades, skill, sprite)
@@ -25,6 +27,9 @@ function BattleHero:initialize(side, gridIndex, stats, upgrades, skill, sprite)
 	
 	self.healthBar = HealthBar(self.secondaryStats.hp or 100, 50, 9)
 	
+	local x, y = GS.current():getWorldPosFromGridIndex(self.side, self.gridIndex)
+	self.damagePopUp = DamagePopUp(x, y)
+	
 	self.isDead = false
 
 	self.sprite = sprite
@@ -42,14 +47,17 @@ function BattleHero:update(dt)
 		
 		self.secondsToAttack = self.secondaryStats.secondsPerAttack
 	end
+	
+	self.damagePopUp:update(dt)
 end
 
 function BattleHero:draw(x, y)
 	love.graphics.setColor(255, 255, 255)
 	love.graphics.draw(self.sprite, x, y, 0, 2)
-
-	--- TODO: replace 30 with the width of self.sprite when it's added
+	
 	self.healthBar:draw(x + self.sprite:getWidth() - self.healthBar.width / 2, y - 20)
+	
+	self.damagePopUp:draw()
 end
 
 function BattleHero:attack()
@@ -200,10 +208,13 @@ function BattleHero:takeDamage(damageType, damage)
 	elseif damageType == 'magical' then
 		totalDamage = damage - self.secondaryStats.magicResist
 	end
+	totalDamage = math.floor(totalDamage + 0.5)
 	if totalDamage < 1 then totalDamage = 1 end
 	
 	self.healthBar.value = self.healthBar.value - totalDamage
-	--print(self.side, self.gridIndex, 'remaining hp', self.healthBar.value)
+	
+	self.damagePopUp:onDamageTaken(totalDamage)
+	
 
 	if (self.healthBar.value <= 0) then
 		self.isDead = true
@@ -213,10 +224,16 @@ function BattleHero:takeDamage(damageType, damage)
 end
 
 function BattleHero:heal(healAmmount)
+	local healAmmount = math.floor(healAmmount + 0.5)
+
 	self.healthBar.value = self.healthBar.value + healAmmount
 	
 	if self.healthBar.value > self.secondaryStats.hp then
+		self.damagePopUp:onHealthHeal(healAmmount - (self.healthBar.value - self.secondaryStats.hp))
+	
 		self.healthBar.value = self.secondaryStats.hp
+	else
+		self.damagePopUp:onHealthHeal(healAmmount)
 	end
 end
 
