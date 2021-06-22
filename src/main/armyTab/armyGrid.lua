@@ -11,7 +11,7 @@ end
 function ArmyGrid:draw()
 	love.graphics.setColor(0.92, 0.92, 0.92)
 	love.graphics.setFont(Fonts.main.title)
-	love.graphics.print('FORMATION', 226, 296, -math.pi/2)
+	love.graphics.print('FORMATION', 226, 285, -math.pi/2)
 
 	for i = 1, 9 do
 		local x, y = self:_getPosFromGridIndex(i)
@@ -168,7 +168,7 @@ function ArmyGrid:_getPosFromGridIndex(i)
 	local gx = (i - 1) % 3
 	local gy = (i - gx - 1) / 3
 	
-	return 264 + gx * 104, 24 + gy * 96
+	return 264 + gx * 104, 14 + gy * 96
 end
 
 function ArmyGrid:_getArmySize()

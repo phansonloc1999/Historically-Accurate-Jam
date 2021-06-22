@@ -36,19 +36,19 @@ function UpgradeSystem:update(dt)
 	
 	
 		if self.suit:Button(tostring(self:getCrystalsFromStatLevel(hero.upgrades.str)),
-				{id = 1}, 440, 378, 76, 28).hit then
+				{id = 1}, 454, 356, 76, 28).hit then
 			self:upgrade(hero, 'str')
 		end
 		if self.suit:Button(tostring(self:getCrystalsFromStatLevel(hero.upgrades.int)),
-				{id = 2}, 440, 414, 76, 28).hit then
+				{id = 2}, 454, 392, 76, 28).hit then
 			self:upgrade(hero, 'int')
 		end
 		if self.suit:Button(tostring(self:getCrystalsFromStatLevel(hero.upgrades.agi)),
-				{id = 3}, 440, 450, 76, 28).hit then
+				{id = 3}, 454, 428, 76, 28).hit then
 			self:upgrade(hero, 'agi')
 		end
 		if self.suit:Button(tostring(self:getCrystalsFromStatLevel(hero.upgrades.dur)),
-				{id = 4}, 440, 486, 76, 28).hit then
+				{id = 4}, 454, 466, 76, 28).hit then
 			self:upgrade(hero, 'dur')
 		end
 	end

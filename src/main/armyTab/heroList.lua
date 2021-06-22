@@ -44,19 +44,6 @@ function HeroList:update(dt)
 end
 
 function HeroList:draw()
-	--love.graphics.setColor(51/255, 45/255, 88/255)
-	--love.graphics.rectangle('fill', 584, 0, 216, 540)
-	
-	--self.suit:draw()
-	--self.suit_:draw()
-	
-	--love.graphics.setColor(51/255, 45/255, 88/255)
-	--love.graphics.rectangle('fill', 584, 0, 216, 40)
-	
-	--love.graphics.setColor(0.93, 0.93, 0.93)
-	--love.graphics.setFont(Fonts.main.title)
-	--love.graphics.print('HEROES', 644, 16)
-	
 	love.graphics.setColor(1, 1, 1)
 	love.graphics.draw(Sprites.gui.main.heroListBackground, 580, 0, 0, 2, 2)
 	

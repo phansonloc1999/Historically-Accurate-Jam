@@ -60,6 +60,7 @@ Fonts = {
 	main = {
 		heroSelectionBig = love.graphics.newFont('assets/fonts/04B_08__.TTF', 32),
 		heroSelectionMedium = love.graphics.newFont('assets/fonts/04B_03B_.TTF', 24),
+		heroSelectionSmall = love.graphics.newFont('assets/fonts/04B_03B_.TTF', 16),
 		title = love.graphics.newFont('assets/fonts/04B_08__.TTF', 24)
 	}
 }
