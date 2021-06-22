@@ -5,7 +5,7 @@ function HeroList:initialize(heroDatas)
 	self.suit = Suit.new()
 	self.suit_ = Suit.new()
 	
-	self.y = 0
+	self.y = 40
 	self.scrollSpeed = 60
 
 	self.suit.theme = setmetatable({}, {__index = Suit.theme})
@@ -44,18 +44,38 @@ function HeroList:update(dt)
 end
 
 function HeroList:draw()
-	love.graphics.setColor(51/255, 45/255, 88/255)
-	love.graphics.rectangle('fill', 584, 0, 216, 540)
+	--love.graphics.setColor(51/255, 45/255, 88/255)
+	--love.graphics.rectangle('fill', 584, 0, 216, 540)
+	
+	--self.suit:draw()
+	--self.suit_:draw()
+	
+	--love.graphics.setColor(51/255, 45/255, 88/255)
+	--love.graphics.rectangle('fill', 584, 0, 216, 40)
+	
+	--love.graphics.setColor(0.93, 0.93, 0.93)
+	--love.graphics.setFont(Fonts.main.title)
+	--love.graphics.print('HEROES', 644, 16)
+	
+	love.graphics.setColor(1, 1, 1)
+	love.graphics.draw(Sprites.gui.main.heroListBackground, 580, 0, 0, 2, 2)
 	
 	self.suit:draw()
 	self.suit_:draw()
+	
+	love.graphics.setColor(1, 1, 1)
+	love.graphics.draw(Sprites.gui.main.heroListBuffer, 580, 0, 0, 2, 2)
+	
+	love.graphics.setColor(0.93, 0.93, 0.93)
+	love.graphics.setFont(Fonts.main.title)
+	love.graphics.print('HEROES', 644, 16)
 end
 
 function HeroList:wheelmoved(x, y)
 	local mx, my = love.mouse.getPosition()
 	
 	if mx > 580 then
-		if y > 0 and self.y < 0 then
+		if y > 0 and self.y < 40 then
 			self.y = self.y + self.scrollSpeed
 		elseif y < 0 and self.y > - self.scrollSpeed * 6 then
 			self.y = self.y - self.scrollSpeed

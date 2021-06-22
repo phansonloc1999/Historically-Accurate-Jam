@@ -1,9 +1,37 @@
 local HeroSelection = Class('HeroSelection')
 
 function HeroSelection:initialize()
+	self.suit = Suit.new()
+end
+
+function HeroSelection:update(dt)
+	local selection = GS.current().selection
+	
+	if selection ~= nil then
+		if self.suit:Button('', 440, 378, 90, 28).hit then
+		
+		end
+		if self.suit:Button('', 440, 414, 90, 28).hit then
+		
+		end
+		if self.suit:Button('', 440, 450, 90, 28).hit then
+		
+		end
+		if self.suit:Button('', 440, 486, 90, 28).hit then
+		
+		end
+	end
 end
 
 function HeroSelection:draw()
+	-- Draw background
+	--love.graphics.setColor(46/255, 59/255, 84/255)
+	--love.graphics.rectangle('fill', 126, 320, 448, 44)
+	love.graphics.setColor(1, 1, 1)
+	love.graphics.draw(Sprites.gui.main.selectionBackground, 126, 320, 0, 2, 2)
+	
+	
+	-- Draw hero and hero info
 	local selection = GS.current().selection
 	
 	if selection ~= nil then
@@ -16,17 +44,36 @@ function HeroSelection:draw()
 	
 	
 		love.graphics.setColor(1, 1, 1)
-		if hero.sprite ~= nil then
-			love.graphics.draw(hero.sprite, 230, 384, 0, 3, 3, hero.sprite:getWidth()/2)
+		love.graphics.setFont(Fonts.main.heroSelectionBig)
+		
+		love.graphics.print(hero.name, 140, 330)
+		
+		if hero.icon ~= nil then
+			love.graphics.setColor(1, 1, 1)
+			love.graphics.draw(Sprites.gui.main.occupiedSlot, 148, 392, 0, 3, 3)
+			love.graphics.draw(hero.icon, 148, 392, 0, 6, 6)
+			love.graphics.draw(Sprites.gui.main.occupiedSlotFrame, 148, 392, 0, 3, 3)
+		
+			--love.graphics.draw(hero.icon, 200, 396, 0, 3, 3, hero.sprite:getWidth()/2)
 		end
-	
-		--love.graphics.setFont(Fonts.main.heroSelectionBig)
-		love.graphics.printf(hero.name, 170, 360, 120, 'center')
-		love.graphics.print('strength: '..tostring(hero.stats.str), 380, 340)
-		love.graphics.print('durability: '..tostring(hero.stats.dur), 380, 360)
-		love.graphics.print('intelligence: '..tostring(hero.stats.int), 380, 380)
-		love.graphics.print('agility: '..tostring(hero.stats.agi), 380, 400)
+		
+		love.graphics.setFont(Fonts.main.heroSelectionMedium)
+		love.graphics.draw(Sprites.gui.main.strength, 300, 378, 0, 2, 2)
+		love.graphics.print(tostring(hero.stats.str), 340, 384)
+		
+		love.graphics.draw(Sprites.gui.main.intelligence, 300, 414, 0, 2, 2)
+		love.graphics.print(tostring(hero.stats.int), 340, 420)
+		
+		love.graphics.draw(Sprites.gui.main.agility, 300, 450, 0, 2, 2)
+		love.graphics.print(tostring(hero.stats.agi), 340, 456)
+		
+		love.graphics.draw(Sprites.gui.main.durability, 300, 486, 0, 2, 2)
+		love.graphics.print(tostring(hero.stats.dur), 340, 492)
 	end
+	
+	self.suit:draw()
 end
+
+
 
 return HeroSelection

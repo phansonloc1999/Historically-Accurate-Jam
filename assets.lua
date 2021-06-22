@@ -18,6 +18,16 @@ Sprites = {
 			emptySlot = love.graphics.newImage('assets/gui/main/emptySlot.png'),
 			occupiedSlot = love.graphics.newImage('assets/gui/main/occupiedSlot.png'),
 			occupiedSlotFrame = love.graphics.newImage('assets/gui/main/occupiedSlotFrame.png'),
+			
+			heroListBackground = love.graphics.newImage('assets/gui/main/heroListBackground.png'),
+			heroListBuffer = love.graphics.newImage('assets/gui/main/heroListBuffer.png'),
+			
+			strength = love.graphics.newImage('assets/gui/main/strength.png'),
+			durability = love.graphics.newImage('assets/gui/main/durability.png'),
+			intelligence = love.graphics.newImage('assets/gui/main/intelligence.png'),
+			agility = love.graphics.newImage('assets/gui/main/agility.png'),
+			
+			selectionBackground = love.graphics.newImage('assets/gui/main/selectionBackground.png')
 		}
 	},
 	
@@ -43,6 +53,8 @@ Sprites = {
 
 Fonts = {
 	main = {
-		heroSelectionBig = love.graphics.newFont('assets/fonts/04B_03B_.TTF', 32),
+		heroSelectionBig = love.graphics.newFont('assets/fonts/04B_08__.TTF', 32),
+		heroSelectionMedium = love.graphics.newFont('assets/fonts/04B_03B_.TTF', 24),
+		title = love.graphics.newFont('assets/fonts/04B_08__.TTF', 24)
 	}
 }

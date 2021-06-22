@@ -60,16 +60,12 @@ function Main:update(dt)
 	elseif self.currentTab == 'army' then
 		self.heroList:update(dt)
 		self.armyGrid:update(dt)
+		self.heroSelection:update(dt)
 		
 	end
 end
 
 function Main:draw()
-	love.graphics.setBackgroundColor(41/255, 37/255, 57/255)
-
-	love.graphics.setColor(1, 1, 1)
-	self.suit:draw()
-	
 	if self.currentTab == 'map' then
 		
 	elseif self.currentTab == 'army' then
@@ -78,6 +74,11 @@ function Main:draw()
 		self.heroSelection:draw()
 		
 	end
+	
+	love.graphics.setBackgroundColor(41/255, 37/255, 57/255)
+
+	love.graphics.setColor(1, 1, 1)
+	self.suit:draw()
 end
 
 function Main:mousepressed(x, y, button)
