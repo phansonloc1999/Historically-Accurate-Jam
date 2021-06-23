@@ -93,9 +93,9 @@ function love.load()
                         hero = {
                             stats = {str = 5, dur = 5, int = 4, agi = 4},
                             skill = "strike",
-                            sprite = Sprites.heroes.thuyTinh.icon
+                            sprite = Sprites.enemies.kiem
                         },
-                        gridIndex = 5
+                        gridIndex = 4
                     }
                 }
             },
