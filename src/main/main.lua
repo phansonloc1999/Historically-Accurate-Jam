@@ -54,19 +54,9 @@ function Main:update(dt)
 	-- Main buttons
 	if self.currentTab == 'map' then
 		if self.suit:Button('level 1', 160, 180, 60, 60).hit then
-			local enemies = {
-				{
-					hero = {
-						stats = {str = 5, dur = 5, int = 4, agi = 4},
-						skill = 'strike',
-						sprite = Sprites.heroes.thuyTinh.icon
-					},
-					gridIndex = 5
-				}
-			}
-		
 			gameData.formation = self.armyGrid.heroIndexes
-			GS.switch(Battle, self.armyGrid:getAllies(), enemies)
+
+			GS.switch(Battle, self.armyGrid:getAllies(), gameData.levels[1].enemies)
 		end
 		
 	elseif self.currentTab == 'army' then
