@@ -93,3 +93,15 @@ Fonts = {
 		title = love.graphics.newFont('assets/fonts/04B_03B_.TTF', 24),
 	}
 }
+
+Audio = {
+	sounds = {
+		gui1 = love.audio.newSource('assets/sounds/gui1.wav', 'static'),
+		gui2 = love.audio.newSource('assets/sounds/gui2.wav', 'static'),
+	},
+	songs = {
+		
+	}
+}
+
+Audio.sounds.gui2:setPitch(0.63)

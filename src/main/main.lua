@@ -29,12 +29,16 @@ function Main:update(dt)
 			{hovered = Sprites.gui.main.map_hovered, active = Sprites.gui.main.map_active},
 			0, 6).hit then
 		self.currentTab = 'map'
+		
+		AudioManager:playSound('gui1')
 	end
 	
 	if self.suit:ImageButton(Sprites.gui.main.army_normal,
 			{hovered = Sprites.gui.main.army_hovered, active = Sprites.gui.main.army_active},
 			0, 236).hit then
 		self.currentTab = 'army'
+		
+		AudioManager:playSound('gui1')
 	end
 	
 	if self.suit:ImageButton(Sprites.gui.main.menu_normal,
@@ -42,6 +46,8 @@ function Main:update(dt)
 			0, 466).hit then
 		gameData.formation = self.armyGrid.heroIndexes
 		GS.switch(Menu)
+		
+		AudioManager:playSound('gui1')
 	end
 	
 
@@ -108,6 +114,8 @@ end
 
 
 function Main:setSelection(from, index)
+	AudioManager:playSound('gui2')
+
 	if from == nil then
 		self.selection = from
 	else

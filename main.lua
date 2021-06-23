@@ -5,6 +5,8 @@
 require 'globals'
 require 'assets'
 
+require 'src.audioManager'
+
 Main = require 'src.main.main'
 Battle = require 'src.battle.battle'
 Menu = require 'src.menu.menu'
