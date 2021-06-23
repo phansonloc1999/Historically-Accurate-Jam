@@ -23,8 +23,8 @@ function love.load()
                 name = "Lac Long Quan",
                 sprite = Sprites.heroes.lacLongQuan.full,
                 icon = Sprites.heroes.lacLongQuan.icon,
-                stats = {str = 5, dur = 12, int = 8, agi = 3},
-                skill = "strike",
+                stats = {str = 3, dur = 12, int = 8, agi = 5},
+                skill = "divine",
                 upgrades = {str = 0, dur = 0, int = 0, agi = 0}
             },
             {
@@ -41,7 +41,7 @@ function love.load()
                 name = "Son Tinh",
                 sprite = Sprites.heroes.sonTinh.full,
                 icon = Sprites.heroes.sonTinh.icon,
-                stats = {str = 9, dur = 9, int = 4, agi = 60}, -- orginally 6
+                stats = {str = 6, dur = 9, int = 11, agi = 2},
                 skill = "smash",
                 upgrades = {str = 0, dur = 0, int = 0, agi = 0}
             },
@@ -68,8 +68,8 @@ function love.load()
                 name = "Chu Dong Tu", -- Can use magic according to myth => high int and agi, low str dur
                 sprite = Sprites.heroes.chuDongTu.full,
                 icon = Sprites.heroes.chuDongTu.icon,
-                stats = {str = 3, dur = 6, int = 15, agi = 10},
-                skill = "armored", -- increase durabity
+                stats = {str = 3, dur = 6, int = 10, agi = 9},
+                skill = "bastion", -- increase durabity
                 upgrades = {str = 0, dur = 0, int = 0, agi = 0}
             },
             {
@@ -78,9 +78,20 @@ function love.load()
                 sprite = Sprites.heroes.thachSanh.full,
                 icon = Sprites.heroes.thachSanh.icon,
                 stats = {str = 12, dur = 8, int = 2, agi = 8},
-                skill = "axe", -- Deal physical damage, ignore armor/durabity
+                skill = "strike", -- Deal physical damage, ignore armor/durabity
                 upgrades = {str = 0, dur = 0, int = 0, agi = 0}
-            }
+            },
+            {
+								unlocked = true,
+								
+								name = 'Thanh Giong',
+								sprite = Sprites.heroes.thanhGiong.full,
+								icon = Sprites.heroes.thanhGiong.icon,
+
+								stats = {str = 7, dur = 8, int = 7, agi = 7},
+								skill = 'disrupt',
+								upgrades = {str = 0, dur = 0, int = 0, agi = 0},
+						},
         },
         formation = {
             [5] = 1

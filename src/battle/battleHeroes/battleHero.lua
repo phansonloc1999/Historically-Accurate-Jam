@@ -17,7 +17,7 @@ function BattleHero:initialize(side, gridIndex, stats, upgrades, skill, sprite)
 		attackDamage = 4 + self.primaryStats.str * 1,
 		secondsPerAttack = 15 / (10 + self.primaryStats.agi),
 		
-		magicPower = 4 + self.primaryStats.int * 1,
+		magicPower = 6 + self.primaryStats.int * 1,
 		
 		hp = 40 + self.primaryStats.dur * 12,
 		armor = 0 + self.primaryStats.agi * 0.5,
@@ -31,21 +31,30 @@ function BattleHero:initialize(side, gridIndex, stats, upgrades, skill, sprite)
 	self.damagePopUp = DamagePopUp(x, y)
 	
 	self.isDead = false
-
-	self.sprite = sprite
 	
 	self.secondsToAttack = 0
 	
 	self.mana = 0
+	
+	self.secondsToEndInvulnerability = 0
+	self.secondsToEndStun = 0
+	self.secondsToEndShield = 0
+	
+	self.sprite = sprite
 end
 
 function BattleHero:update(dt)
-	self.secondsToAttack = self.secondsToAttack - dt
+	self.secondsToEndStun = self.secondsToEndStun - dt
 
-	if self.secondsToAttack <= 0 then
-		self:attack()
+	if self.secondsToEndStun <= 0 then
+		self.secondsToAttack = self.secondsToAttack - dt
+		if self.secondsToAttack <= 0 then
+			self:attack()
+			self.secondsToAttack = self.secondaryStats.secondsPerAttack
+		end
 		
-		self.secondsToAttack = self.secondaryStats.secondsPerAttack
+		self.secondsToEndInvulnerability = self.secondsToEndInvulnerability - dt
+		self.secondsToEndShield = self.secondsToEndShield - dt
 	end
 	
 	self.damagePopUp:update(dt)
@@ -76,39 +85,67 @@ end
 function BattleHero:castSkill(skill)
 	print('use skill '..skill)
 
-	if skill == 'strike' then -------------------
+	if skill == 'strike' then --------------------------
 		local target = self:getTarget()
-		target:takeDamage('magical', self.secondaryStats.magicPower * 2.25)
+		target:takeDamage('magical', self.secondaryStats.magicPower * 2.5, true)
 		
 		
-	elseif skill == 'regenerate' then -----------
+	elseif skill == 'regenerate' then ------------------
 		local teamates = self:getAllTeamates()
 		for i = 1, #teamates do
-			teamates[i]:heal(self.secondaryStats.magicPower * 0.6)
+			teamates[i]:heal(self.secondaryStats.magicPower * 0.7)
 		end
 		
 		
-	elseif skill == 'smash' then ----------------
-		local mainTargetY = math.floor(self:getTarget().gridIndex / 3)
+	elseif skill == 'smash' then -----------------------
+		local mainTargetY = math.floor((self:getTarget().gridIndex-1) / 3)
 		 
 		local targets = self:getAllTargets()
 		for i = 1, #targets do
-			local targetY = math.floor(targets[i].gridIndex / 3)
+			local targetY = math.floor((targets[i].gridIndex-1) / 3)
 			
 			if targetY == mainTargetY then
-				targets[i]:takeDamage('magical', self.secondaryStats.magicPower * 1.4)
+				targets[i]:takeDamage('magical', self.secondaryStats.magicPower * 1.9)
 			end
 		end
 	
 	
-	elseif skill == 'rend' then -----------------
+	elseif skill == 'rend' then ------------------------
 		local target = self:getTarget()
-		target:takeDamage('physical', self.secondaryStats.attackDamage * 2.0)
+		target:takeDamage('physical', self.secondaryStats.attackDamage * 2.5)
 		
 	
-	elseif skill == 'mandate' then --------------
-		-- buff allies attack speed
+	elseif skill == 'mandate' then ---------------------
+		local teamates = self:getAllTeamates()
+		for i = 1, #teamates do
+			if teamates[i] ~= self then
+				teamates[i]:addMana(3)
+			end
+		end
 		
+		
+	elseif skill == 'divine' then ----------------------
+		self.secondsToEndInvulnerability = 2
+		
+		local target = self:getTarget()
+		target:takeDamage('magical', self.secondaryStats.magicPower * 1.0)
+		
+		
+	elseif skill == 'disrupt' then ---------------------
+		local target = self:getTarget()
+		target:takeDamage('magical', self.secondaryStats.magicPower * 0.75)
+		target:stun(1)
+		
+	
+	elseif skill == 'bastion'	then ---------------------
+		local teamates = self:getAllTeamates()
+		for i = 1, #teamates do
+			teamates[i].secondsToEndArmored = 2
+		end
+		
+		local target = self:getTarget()
+		target:takeDamage('magical', self.secondaryStats.magicPower * 1.0)
+	
 	end
 end
 
@@ -201,12 +238,22 @@ function BattleHero:getAllTeamates()
 	return GS.current()[self.side]
 end
 
-function BattleHero:takeDamage(damageType, damage)
+function BattleHero:takeDamage(damageType, damage, isTrueDamage)
 	local totalDamage
-	if damageType == 'physical' then
-		totalDamage = damage - self.secondaryStats.armor
-	elseif damageType == 'magical' then
-		totalDamage = damage - self.secondaryStats.magicResist
+	if self.secondsToEndInvulnerability > 0 then
+		totalDamage = 1
+	else
+		if isTrueDamage then
+			totalDamage = damage
+		elseif damageType == 'physical' then
+			totalDamage = damage - self.secondaryStats.armor
+		elseif damageType == 'magical' then
+			totalDamage = damage - self.secondaryStats.magicResist
+		end
+		
+		if self.secondsToEndShield then
+			totalDamage = totalDamage / 2
+		end
 	end
 	totalDamage = math.floor(totalDamage + 0.5)
 	if totalDamage < 1 then totalDamage = 1 end
@@ -237,9 +284,22 @@ function BattleHero:heal(healAmmount)
 	end
 end
 
+function BattleHero:stun(duration)
+	if self.secondsToEndStun < duration then
+		self.secondsToEndStun = duration
+	end
+end
+
+function BattleHero:shield(duration)
+	if self.secondsToEndShield < duration then
+		self.secondsToEndShield = duration
+	end
+end
+
 function BattleHero:addMana(num)
 	self.mana = self.mana + num
 end
+
 
 function BattleHero:_getHeroFromGridIndex(side, gridIndex)
 	local heroes = GS.current()[side]

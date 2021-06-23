@@ -100,7 +100,7 @@ end
 
 function HoveredInfo:getSkillInfo(skill)
 	if skill == 'rend' then
-		return 'DEAL 200% PHYSICAL DAMAGE TO A SINGLE TARGET'
+		return 'DEAL 250% PHYSICAL DAMAGE TO A SINGLE TARGET'
 	end
 end
 
