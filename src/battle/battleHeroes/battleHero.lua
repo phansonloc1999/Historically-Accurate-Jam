@@ -14,14 +14,14 @@ function BattleHero:initialize(side, gridIndex, stats, upgrades, skill, sprite)
 		agi = stats.agi + upgrades.agi,
 	}
 	self.secondaryStats = {
-		attackDamage = 4 + self.primaryStats.str * 1,
+		attackDamage = 10 + self.primaryStats.str * 2,
 		secondsPerAttack = 15 / (10 + self.primaryStats.agi),
 		
-		magicPower = 6 + self.primaryStats.int * 1,
+		magicPower = 15 + self.primaryStats.int * 2,
 		
-		hp = 40 + self.primaryStats.dur * 12,
-		armor = 0 + self.primaryStats.agi * 0.5,
-		magicResist = 0 + self.primaryStats.int * 0.75
+		hp = 46 + self.primaryStats.dur * 18,
+		armor = 0 + self.primaryStats.agi * 1,
+		magicResist = 0 + self.primaryStats.int * 1.5
 	}
 	self.skill = skill
 	

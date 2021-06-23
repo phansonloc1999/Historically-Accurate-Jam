@@ -11,12 +11,14 @@ Main = require "src.main.main"
 Battle = require "src.battle.battle"
 Menu = require "src.menu.menu"
 
+
 local MainHero = require "src.main.mainHero"
 gameData = nil
+levels = require 'src.levels'
 
 function love.load()
     gameData = {
-        crystals = 50,
+        crystals = 5000,
         heroList = {
             {
                 unlocked = true,
@@ -93,44 +95,12 @@ function love.load()
 								upgrades = {str = 0, dur = 0, int = 0, agi = 0},
 						},
         },
+        
         formation = {
             [5] = 1
         },
-        levels = {
-            {
-                passed = false,
-                enemies = {
-                    {
-                        hero = {
-                            stats = {str = 5, dur = 5, int = 4, agi = 4},
-                            skill = "strike",
-                            sprite = Sprites.enemies.kiem
-                        },
-                        gridIndex = 4
-                    },
-                    {
-                        hero = {
-                            stats = {str = 5, dur = 5, int = 5, agi = 5},
-                            skill = "strike",
-                            sprite = Sprites.enemies.kiem
-                        },
-                        gridIndex = 1
-                    },
-                    {
-                        hero= {
-                            stats = {str = 5, dur = 5, int = 5, agi = 5},
-                            skill = "strike",
-                            sprite = Sprites.enemies.kiem,
-                    },
-                        gridIndex = 3
-                    }
-                }
-            },
-            {
-                passed = false,
-                enemies = {}
-            }
-        }
+        
+        levels = levels
     }
 
     love.graphics.setBackgroundColor(41 / 255, 37 / 255, 57 / 255)

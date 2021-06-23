@@ -53,10 +53,13 @@ function Main:update(dt)
 
 	-- Main buttons
 	if self.currentTab == 'map' then
-		if self.suit:Button('level 1', 160, 180, 60, 60).hit then
-			gameData.formation = self.armyGrid.heroIndexes
+		for i = 1, #gameData.levels do
+			if self.suit:Button('level '..tostring(i), {font = love.graphics.setNewFont(16)},
+					160 + 80 * (i-1), 180, 60, 60).hit then
+				gameData.formation = self.armyGrid.heroIndexes
 
-			GS.switch(Battle, self.armyGrid:getAllies(), gameData.levels[1].enemies)
+				GS.switch(Battle, self.armyGrid:getAllies(), gameData.levels[i].enemies)
+			end
 		end
 		
 	elseif self.currentTab == 'army' then
