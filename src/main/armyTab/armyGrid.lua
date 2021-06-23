@@ -1,7 +1,7 @@
 local ArmyGrid = Class('ArmyGrid')
 
-function ArmyGrid:initialize()
-	self.heroIndexes = {}
+function ArmyGrid:initialize(heroIndexes)
+	self.heroIndexes = heroIndexes
 end
 
 function ArmyGrid:update(dt)

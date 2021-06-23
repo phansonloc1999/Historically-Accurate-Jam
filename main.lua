@@ -7,6 +7,7 @@ require 'assets'
 
 Main = require 'src.main.main'
 Battle = require 'src.battle.battle'
+Menu = require 'src.menu.menu'
 
 local MainHero = require 'src.main.mainHero'
 gameData = nil
@@ -14,6 +15,7 @@ gameData = nil
 function love.load()
 	gameData = {
 		crystals = 50,
+		
 		heroList = {
 			{
 				unlocked = true,
@@ -44,7 +46,7 @@ function love.load()
 				sprite = Sprites.heroes.sonTinh.full,
 				icon = Sprites.heroes.sonTinh.icon,
 				
-				stats = {str = 9, dur = 9, int = 4, agi = 6},
+				stats = {str = 9, dur = 9, int = 4, agi = 60}, -- orginally 6
 				skill = 'smash',
 				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
 			},
@@ -94,6 +96,10 @@ function love.load()
 			}
 		},
 		
+		formation = {
+			[5] = 1
+		},
+		
 		levels = {
 			{
 				passed = false,
@@ -112,18 +118,11 @@ function love.load()
 		}
 	}
 
+	
+	love.graphics.setBackgroundColor(41/255, 37/255, 57/255)
+	
 	GS.registerEvents()
-	
-	--local allies = {
-	
-	--}
-	--local enemies = {
-	
-	--}
-	
-	--GS.switch(Battle, {}, {})
-	
-	 GS.switch(Main)
+	GS.switch(Menu)
 end
 
 function love.update(dt)

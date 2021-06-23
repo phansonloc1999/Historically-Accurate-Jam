@@ -33,6 +33,17 @@ Sprites = {
 			upgradeButton_normal = love.graphics.newImage('assets/gui/main/upgradeButton_normal.png'),
 			upgradeButton_hovered = love.graphics.newImage('assets/gui/main/upgradeButton_hovered.png'),
 			upgradeButton_active = love.graphics.newImage('assets/gui/main/upgradeButton_active.png'),
+		},
+		result = {
+			background = love.graphics.newImage('assets/gui/result/background.png'),
+		
+			replay_normal = love.graphics.newImage('assets/gui/result/replay_normal.png'),
+			replay_hovered = love.graphics.newImage('assets/gui/result/replay_hovered.png'),
+			replay_active = love.graphics.newImage('assets/gui/result/replay_active.png'),
+			
+			exit_normal = love.graphics.newImage('assets/gui/result/exit_normal.png'),
+			exit_hovered = love.graphics.newImage('assets/gui/result/exit_hovered.png'),
+			exit_active = love.graphics.newImage('assets/gui/result/exit_active.png'),
 		}
 	},
 	
@@ -77,5 +88,8 @@ Fonts = {
 	},
 	battle = {
 		damagePopUp = love.graphics.newFont('assets/fonts/04B_03B_.TTF', 24),
+	},
+	result = {
+		title = love.graphics.newFont('assets/fonts/04B_03B_.TTF', 24)
 	}
 }

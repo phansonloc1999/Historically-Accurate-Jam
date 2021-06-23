@@ -21,9 +21,9 @@ end
 
 function Battle:update(dt)
 	if (#self.enemies <= 0) then
-		GS.switch(Result, "Player wins!")
+		GS.switch(Result, "allies")
 	elseif (#self.allies <= 0) then
-		GS.switch(Result, "Enemy wins!")
+		GS.switch(Result, "enemies")
 	end
 
 	for i, ally in ipairs(self.allies) do

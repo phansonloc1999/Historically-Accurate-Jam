@@ -13,7 +13,7 @@ function Main:enter(from)
 	-- Army tab
 	self.selection = nil
 	self.heroList = HeroList(gameData.heroList)
-	self.armyGrid = ArmyGrid()
+	self.armyGrid = ArmyGrid(gameData.formation)
 	self.heroSelection = HeroSelection()
 	self.upgradeSystem = UpgradeSystem()
 	
@@ -38,7 +38,8 @@ function Main:update(dt)
 	if self.suit:ImageButton(Sprites.gui.main.menu_normal,
 			{hovered = Sprites.gui.main.menu_hovered, active = Sprites.gui.main.menu_active},
 			0, 466).hit then
-	
+		gameData.formation = self.armyGrid.heroIndexes
+		GS.switch(Menu)
 	end
 	
 
@@ -56,6 +57,7 @@ function Main:update(dt)
 				}
 			}
 		
+			gameData.formation = self.armyGrid.heroIndexes
 			GS.switch(Battle, self.armyGrid:getAllies(), enemies)
 		end
 		
@@ -79,8 +81,6 @@ function Main:draw()
 		
 	end
 	
-	love.graphics.setBackgroundColor(41/255, 37/255, 57/255)
-
 	love.graphics.setColor(1, 1, 1)
 	self.suit:draw()
 end
