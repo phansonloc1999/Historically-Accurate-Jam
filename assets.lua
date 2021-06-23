@@ -104,4 +104,4 @@ Audio = {
 	}
 }
 
-Audio.sounds.gui2:setPitch(0.63)
+Audio.sounds.gui2:setPitch(0.83)

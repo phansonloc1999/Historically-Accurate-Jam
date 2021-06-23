@@ -16,14 +16,24 @@ function HeroList:initialize(heroDatas)
 		love.graphics.draw(icon, x, y, 0, 4, 4)
 		love.graphics.draw(Sprites.gui.main.occupiedSlotFrame, x, y, 0, 2, 2)
 	
-		if opt.state == 'normal' then
-			love.graphics.setColor(1,1,1,0)
-		elseif opt.state == 'hovered' then
-			love.graphics.setColor(1,1,1,0.075)
-		elseif opt.state == 'active' then
-			love.graphics.setColor(0,0,0,0.11)
+		if not opt.hero.unlocked then
+			love.graphics.setColor(0, 0, 0, 0.4)
+			love.graphics.rectangle('fill', x, y, 80, 80)
+			
+			love.graphics.setColor(0.92, 0.92, 0.92)
+			love.graphics.setFont(Fonts.main.heroSelectionSmall)
+			love.graphics.printf('LOCKED', x, y + 34, 80, 'center')
+			
+		else
+			if opt.state == 'normal' then
+				love.graphics.setColor(1,1,1,0)
+			elseif opt.state == 'hovered' then
+				love.graphics.setColor(1,1,1,0.075)
+			elseif opt.state == 'active' then
+				love.graphics.setColor(0,0,0,0.11)
+			end
+			love.graphics.rectangle('fill', x, y, 80, 80)
 		end
-		love.graphics.rectangle('fill', x, y, 80, 80)
 	end
 end
 
@@ -32,7 +42,7 @@ function HeroList:update(dt)
 		local x, y = self:_getPosFromDataIndex(i)
 
 		if heroData.icon ~= nil then
-			if self.suit:Button(heroData.icon, x, y, 80, 80).hit then
+			if self.suit:Button(heroData.icon, {hero = heroData}, x, y, 80, 80).hit and heroData.unlocked then
 				GS.current():setSelection('hero list', i)
 			end
 		else
