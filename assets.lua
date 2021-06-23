@@ -90,6 +90,6 @@ Fonts = {
 		damagePopUp = love.graphics.newFont('assets/fonts/04B_03B_.TTF', 24),
 	},
 	result = {
-		title = love.graphics.newFont('assets/fonts/04B_03B_.TTF', 24)
+		title = love.graphics.newFont('assets/fonts/04B_03B_.TTF', 24),
 	}
 }

@@ -3,7 +3,7 @@ local Result = require 'src.result.result'
 
 local Battle = {}
 
-function Battle:enter(from, allies, enemies)
+function Battle:enter(from, allies, enemies, isReplay)
 	self.allies = {}
 	for i = 1, #allies do
 		local ally = allies[i]
@@ -17,13 +17,16 @@ function Battle:enter(from, allies, enemies)
 		table.insert(self.enemies,
 				BattleHero('enemies', enemy.gridIndex, enemy.hero.stats, enemy.hero.upgrades, enemy.hero.skill, enemy.hero.sprite))
 	end
+	
+	self.battleData = {allies = allies, enemies = enemies}
+	self.isReplay = isReplay or false
 end
 
 function Battle:update(dt)
 	if (#self.enemies <= 0) then
-		GS.switch(Result, "allies")
+		GS.switch(Result, "allies", self.battleData, self.isReplay)
 	elseif (#self.allies <= 0) then
-		GS.switch(Result, "enemies")
+		GS.switch(Result, "enemies", self.battleData, self.isReplay)
 	end
 
 	for i, ally in ipairs(self.allies) do

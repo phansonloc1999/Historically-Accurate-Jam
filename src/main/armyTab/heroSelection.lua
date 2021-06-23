@@ -40,8 +40,6 @@ function HeroSelection:draw()
 			love.graphics.draw(Sprites.gui.main.occupiedSlotFrame, 154, 362, 0, 3, 3)
 		end
 		
-		--love.graphics.setColor(47/255, 63/255, 96/255)
-		--love.graphics.rectangle('fill', 130, 478, 170, 36)
 		
 		love.graphics.setColor(1, 1, 1)
 		love.graphics.draw(Sprites.gui.main.selectionBackground, self.skillBackgroundQuad,
@@ -51,6 +49,7 @@ function HeroSelection:draw()
 		love.graphics.print('SKILL :', 134, 510)
 		love.graphics.setFont(Fonts.main.heroSelectionMedium)
 		love.graphics.print(string.upper(hero.skill), 200, 506)
+		
 		
 		love.graphics.setColor(1, 1, 1)
 		love.graphics.setFont(Fonts.main.heroSelectionMedium)

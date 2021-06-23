@@ -1,6 +1,6 @@
 local Result = {}
 
-function Result:enter(from, winner)
+function Result:enter(from, winner, battleData, isReplay)
 	self.from = from
 	
 	if winner == 'allies' then
@@ -11,6 +11,9 @@ function Result:enter(from, winner)
 		self.color = {97/255, 156/255, 195/255}
 	end
 	
+	self.battleData = battleData
+	self.isReplay = isReplay
+	
 	self.suit = Suit.new()
 end
 
@@ -18,7 +21,7 @@ function Result:update(dt)
 	if self.suit:ImageButton(Sprites.gui.result.replay_normal,
 			{hovered = Sprites.gui.result.replay_hovered, active = Sprites.gui.result.replay_active},
 			312, 288).hit then
-		
+		GS.switch(Battle, self.battleData.allies, self.battleData.enemies, true)
 	end
 	if self.suit:ImageButton(Sprites.gui.result.exit_normal,
 			{hovered = Sprites.gui.result.exit_hovered, active = Sprites.gui.result.exit_active},
