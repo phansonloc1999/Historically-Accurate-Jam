@@ -75,23 +75,23 @@ function love.load()
 			{
 				unlocked = true,
 
-				name = 'Chu Dong Tu',
+				name = 'Chu Dong Tu', -- Can use magic according to myth => high int and agi, low str dur 
 				sprite = Sprites.heroes.chuDongTu.full,
 				icon = Sprites.heroes.chuDongTu.icon,
 
-				stats = {str = 6, dur = 6, int = 6, agi = 6},
-				skill = '',
+				stats = {str = 3, dur = 6, int = 15, agi = 10},
+				skill = 'armored', -- increase durabity 
 				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
 			},
 			{
 				unlocked = true,
 
-				name = 'Thach Sanh',
+				name = 'Thach Sanh', -- High str + dur, low int, avg agi
 				sprite = Sprites.heroes.thachSanh.full,
 				icon = Sprites.heroes.thachSanh.icon,
 
-				stats = {str = 6, dur = 6, int = 6, agi = 6},
-				skill = '',
+				stats = {str = 12, dur = 8, int = 2, agi = 8},
+				skill = 'axe', -- Deal physical damage, ignore armor/durabity
 				upgrades = {str = 0, dur = 0, int = 0, agi = 0},
 			}
 		},
