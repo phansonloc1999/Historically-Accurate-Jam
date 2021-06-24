@@ -11,10 +11,9 @@ Main = require "src.main.main"
 Battle = require "src.battle.battle"
 Menu = require "src.menu.menu"
 
-
 local MainHero = require "src.main.mainHero"
 gameData = nil
-levels = require 'src.levels'
+levels = require "src.levels"
 
 function love.load()
     gameData = {
@@ -84,22 +83,18 @@ function love.load()
                 upgrades = {str = 0, dur = 0, int = 0, agi = 0}
             },
             {
-								unlocked = true,
-								
-								name = 'Thanh Giong',
-								sprite = Sprites.heroes.thanhGiong.full,
-								icon = Sprites.heroes.thanhGiong.icon,
-
-								stats = {str = 7, dur = 8, int = 7, agi = 7},
-								skill = 'disrupt',
-								upgrades = {str = 0, dur = 0, int = 0, agi = 0},
-						},
+                unlocked = true,
+                name = "Thanh Giong",
+                sprite = Sprites.heroes.thanhGiong.full,
+                icon = Sprites.heroes.thanhGiong.icon,
+                stats = {str = 7, dur = 8, int = 7, agi = 7},
+                skill = "disrupt",
+                upgrades = {str = 0, dur = 0, int = 0, agi = 0}
+            }
         },
-        
         formation = {
             [5] = 1
         },
-        
         levels = levels
     }
 

@@ -1,5 +1,7 @@
 local ArmyGrid = Class('ArmyGrid')
 
+local MAX_ARMY_SIZE = 5
+
 function ArmyGrid:initialize(heroIndexes)
 	self.heroIndexes = heroIndexes
 end
@@ -48,6 +50,10 @@ function ArmyGrid:draw()
 		end
 		love.graphics.rectangle('fill', x, y, 80, 80)
 	end
+
+	love.graphics.setColor(255, 255, 255)
+	-- Print current army size / max army size
+	love.graphics.print(self:_getArmySize().." / "..MAX_ARMY_SIZE, 250)
 end
 
 function ArmyGrid:mousepressed(mx, my, button)
