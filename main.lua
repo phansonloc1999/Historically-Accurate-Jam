@@ -99,6 +99,7 @@ function love.load()
     }
 
     love.graphics.setBackgroundColor(41 / 255, 37 / 255, 57 / 255)
+    love.graphics.setFont(Fonts.result.title)
 
     GS.registerEvents()
     GS.switch(Menu)
