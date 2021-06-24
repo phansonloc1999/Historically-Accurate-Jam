@@ -35,6 +35,9 @@ Sprites = {
 			exit_normal = love.graphics.newImage("assets/gui/result/exit_normal.png"),
 			exit_hovered = love.graphics.newImage("assets/gui/result/exit_hovered.png"),
 			exit_active = love.graphics.newImage("assets/gui/result/exit_active.png")
+		},
+		battle = {
+			healthBar = love.graphics.newImage('assets/gui/battle/healthbar.png')
 		}
 	},
     

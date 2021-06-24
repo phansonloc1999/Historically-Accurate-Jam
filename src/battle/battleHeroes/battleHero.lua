@@ -25,7 +25,7 @@ function BattleHero:initialize(side, gridIndex, stats, upgrades, skill, sprite)
 	}
 	self.skill = skill
 	
-	self.healthBar = HealthBar(self.secondaryStats.hp or 100, 50, 9)
+	self.healthBar = HealthBar(self, self.secondaryStats.hp or 100, 50, 9)
 	
 	local x, y = GS.current():getWorldPosFromGridIndex(self.side, self.gridIndex)
 	self.damagePopUp = DamagePopUp(x, y)
@@ -64,7 +64,7 @@ function BattleHero:draw(x, y)
 	love.graphics.setColor(255, 255, 255)
 	love.graphics.draw(self.sprite, x, y, 0, 2)
 	
-	self.healthBar:draw(x + self.sprite:getWidth() - self.healthBar.width / 2, y - 20)
+	self.healthBar:draw(x + self.sprite:getWidth() - self.healthBar.width / 2, y - 22)
 	
 	self.damagePopUp:draw()
 end

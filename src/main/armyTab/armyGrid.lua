@@ -14,7 +14,7 @@ end
 function ArmyGrid:draw()
 	love.graphics.setColor(0.92, 0.92, 0.92)
 	love.graphics.setFont(Fonts.main.title)
-	love.graphics.print('FORMATION', 226, 285, -math.pi/2)
+	love.graphics.print('FORMATION: '..self.currentArmySize.."/"..MAX_ARMY_SIZE, 226, 285, -math.pi/2)
 
 	for i = 1, 9 do
 		local x, y = self:_getPosFromGridIndex(i)
@@ -51,10 +51,6 @@ function ArmyGrid:draw()
 		end
 		love.graphics.rectangle('fill', x, y, 80, 80)
 	end
-
-	love.graphics.setColor(255, 255, 255)
-	-- Print current army size / max army size
-	love.graphics.print(self.currentArmySize.." / "..MAX_ARMY_SIZE, 250)
 end
 
 function ArmyGrid:mousepressed(mx, my, button)
