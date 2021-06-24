@@ -101,6 +101,28 @@ end
 function HoveredInfo:getSkillInfo(skill)
 	if skill == 'rend' then
 		return 'DEAL 250% PHYSICAL DAMAGE TO A SINGLE TARGET'
+		
+	elseif skill == 'divine' then
+		return 'DEAL 80% MAGICAL DAMAGE AND BECOME INVULNERABLE FOR 2 SECONDS'
+	
+	elseif skill == 'regenerate' then
+		return 'HEAL ALL TEAMATES EQUAL TO 60% MAGIC DAMAGE'
+	
+	elseif skill == 'smash' then
+		return 'DEAL 240% MAGICAL DAMAGE HORIZONTALLY'
+	
+	elseif skill == 'mandate' then
+		return 'INCREASE ALL TEAMATES MANA BY 33%'
+	
+	elseif skill == 'bastion' then
+		return 'REDUCE DAMAGE TAKEN FOR ALL TEAMATES BY 50% FOR 1.5 SECONDS'
+	
+	elseif skill == 'strike' then
+		return 'DEAL 325% MAGICAL DAMAGE TO A SINGLE TARGET AND IGNORE THEIR DEFENSE'
+	
+	elseif skill == 'disrupt' then
+		return 'DEAL 150% MAGICAL DAMAGE AND STUN A SINGLE TARGET FOR 1 SECOND'
+	
 	end
 end
 

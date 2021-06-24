@@ -105,7 +105,7 @@ function BattleHero:castSkill(skill)
 			local targetY = math.floor((targets[i].gridIndex-1) / 3)
 			
 			if targetY == mainTargetY then
-				targets[i]:takeDamage('magical', self.secondaryStats.magicPower * 1.9)
+				targets[i]:takeDamage('magical', self.secondaryStats.magicPower * 2.4)
 			end
 		end
 	
@@ -128,23 +128,23 @@ function BattleHero:castSkill(skill)
 		self.secondsToEndInvulnerability = 2
 		
 		local target = self:getTarget()
-		target:takeDamage('magical', self.secondaryStats.magicPower * 1.0)
+		target:takeDamage('magical', self.secondaryStats.magicPower * 0.8)
 		
 		
 	elseif skill == 'disrupt' then ---------------------
 		local target = self:getTarget()
-		target:takeDamage('magical', self.secondaryStats.magicPower * 0.75)
+		target:takeDamage('magical', self.secondaryStats.magicPower * 1.5)
 		target:stun(1)
 		
 	
 	elseif skill == 'bastion'	then ---------------------
 		local teamates = self:getAllTeamates()
 		for i = 1, #teamates do
-			teamates[i].secondsToEndArmored = 2
+			teamates[i].secondsToEndArmored = 1.5
 		end
 		
-		local target = self:getTarget()
-		target:takeDamage('magical', self.secondaryStats.magicPower * 1.0)
+		--local target = self:getTarget()
+		--target:takeDamage('magical', self.secondaryStats.magicPower * 1.0)
 	
 	end
 end
