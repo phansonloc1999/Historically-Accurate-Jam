@@ -4,6 +4,7 @@ local MAX_ARMY_SIZE = 5
 
 function ArmyGrid:initialize(heroIndexes)
 	self.heroIndexes = heroIndexes
+	self.currentArmySize = self:_getArmySize()
 end
 
 function ArmyGrid:update(dt)
@@ -53,7 +54,7 @@ function ArmyGrid:draw()
 
 	love.graphics.setColor(255, 255, 255)
 	-- Print current army size / max army size
-	love.graphics.print(self:_getArmySize().." / "..MAX_ARMY_SIZE, 250)
+	love.graphics.print(self.currentArmySize.." / "..MAX_ARMY_SIZE, 250)
 end
 
 function ArmyGrid:mousepressed(mx, my, button)
@@ -83,7 +84,8 @@ function ArmyGrid:mousepressed(mx, my, button)
 								self:addHeroIndexToGrid(heroIndex, i)
 								
 								GS.current():setSelection(nil)
-								
+
+								self.currentArmySize = self:_getArmySize()
 							end
 						
 						elseif selection.from == 'hero list' then
@@ -92,6 +94,7 @@ function ArmyGrid:mousepressed(mx, my, button)
 								
 								GS.current():setSelection(nil)
 								
+								self.currentArmySize = self:_getArmySize()
 							else
 							
 								GS.current():setSelection(nil)
@@ -109,9 +112,11 @@ function ArmyGrid:mousepressed(mx, my, button)
 						if selection.from == 'army grid' then
 							self:switchHeroIndexPos(i, selection.index)
 							
+							self.currentArmySize = self:_getArmySize()
 						elseif selection.from == 'hero list' then
 							self:addHeroIndexToGrid(selection.index, i)
 							
+							self.currentArmySize = self:_getArmySize()
 						end
 						GS.current():setSelection(nil)
 						
@@ -122,6 +127,8 @@ function ArmyGrid:mousepressed(mx, my, button)
 			elseif button == 2 then
 				self.heroIndexes[i] = nil
 				GS.current():setSelection(nil)
+
+				self.currentArmySize = self:_getArmySize()
 			end
 		end
 	end
@@ -144,6 +151,8 @@ function ArmyGrid:removeHeroIndexFromGrid(gridIndex)
 			self.heroIndexes[i] = nil
 		end
 	end
+
+	self.currentArmySize = self:_getArmySize()
 end
 
 function ArmyGrid:switchHeroIndexPos(gridIndex1, gridIndex2)
