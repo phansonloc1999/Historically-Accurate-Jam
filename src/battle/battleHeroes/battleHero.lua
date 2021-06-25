@@ -1,4 +1,5 @@
 local DamagePopUp = require 'src.battle.battleHeroes.damagePopUp'
+local StatusIcon = require 'src.battle.battleHeroes.statusIcon'
 
 local BattleHero = Class('BattleHero')
 
@@ -25,10 +26,16 @@ function BattleHero:initialize(side, gridIndex, stats, upgrades, skill, sprite)
 	}
 	self.skill = skill
 	
+	----------------
+	
 	self.healthBar = HealthBar(self, self.secondaryStats.hp or 100, 50, 9)
 	
 	local x, y = GS.current():getWorldPosFromGridIndex(self.side, self.gridIndex)
 	self.damagePopUp = DamagePopUp(x, y)
+	
+	self.statusIcon = StatusIcon(self)
+	
+	----------------
 	
 	self.isDead = false
 	
@@ -64,7 +71,9 @@ function BattleHero:draw(x, y)
 	love.graphics.setColor(255, 255, 255)
 	love.graphics.draw(self.sprite, x, y, 0, 2)
 	
-	self.healthBar:draw(x + self.sprite:getWidth() - self.healthBar.width / 2, y - 22)
+	self.statusIcon:draw(x, y)
+	
+	self.healthBar:draw(x + self.sprite:getWidth() - self.healthBar.width / 2, y - 25)
 	
 	self.damagePopUp:draw()
 end
@@ -83,10 +92,9 @@ function BattleHero:attack()
 end
 
 function BattleHero:castSkill(skill)
-	print('use skill '..skill)
+	local target = self:getTarget()
 
 	if skill == 'strike' then --------------------------
-		local target = self:getTarget()
 		target:takeDamage('magical', self.secondaryStats.magicPower * 2.5, true)
 		
 		
@@ -111,7 +119,6 @@ function BattleHero:castSkill(skill)
 	
 	
 	elseif skill == 'rend' then ------------------------
-		local target = self:getTarget()
 		target:takeDamage('physical', self.secondaryStats.attackDamage * 2.5)
 		
 	
@@ -125,14 +132,12 @@ function BattleHero:castSkill(skill)
 		
 		
 	elseif skill == 'divine' then ----------------------
-		self.secondsToEndInvulnerability = 2
+		self.secondsToEndInvulnerability = 1.25
 		
-		local target = self:getTarget()
 		target:takeDamage('magical', self.secondaryStats.magicPower * 0.8, false,"divine")
 		
 		
 	elseif skill == 'disrupt' then ---------------------
-		local target = self:getTarget()
 		target:takeDamage('magical', self.secondaryStats.magicPower * 1.5)
 		target:stun(1)
 		
@@ -147,6 +152,10 @@ function BattleHero:castSkill(skill)
 		--target:takeDamage('magical', self.secondaryStats.magicPower * 1.0)
 	
 	end
+	
+	self.damagePopUp:onSkillCasted(skill)
+	
+	GS.current().effectManager:onSkillCasted(skill, self.side, self.gridIndex, target.gridIndex)
 end
 
 
@@ -261,11 +270,11 @@ function BattleHero:takeDamage(damageType, damage, isTrueDamage, skillName)
 	self.healthBar.value = self.healthBar.value - totalDamage
 	
 	local damagePopUpColor
-	if (skillName == "divine") then
-		damagePopUpColor = {0, 0, 0}
-	end
 	if (isTrueDamage) then
-		damagePopUpColor = {255, 255, 255}
+		damagePopUpColor = {247/255, 229/255, 178/255}
+	end
+	if self.secondsToEndInvulnerability > 0 then
+		damagePopUpColor = {82/255, 77/255, 86/255}
 	end
 	self.damagePopUp:onDamageTaken(totalDamage, damagePopUpColor)
 

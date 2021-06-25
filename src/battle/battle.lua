@@ -1,5 +1,7 @@
-local BattleHero = require 'src.battle.battleHeroes.battleHero'
 local Result = require 'src.result.result'
+
+local BattleHero = require 'src.battle.battleHeroes.battleHero'
+local EffectManager = require 'src.battle.effectManager'
 
 local Battle = {}
 
@@ -20,6 +22,8 @@ function Battle:enter(from, allies, enemies, isReplay)
 	
 	self.battleData = {allies = allies, enemies = enemies}
 	self.isReplay = isReplay or false
+	
+	self.effectManager = EffectManager()
 end
 
 function Battle:update(dt)
@@ -50,7 +54,9 @@ function Battle:update(dt)
 
 	if (love.keyboard.isDown("escape")) then
 		GS.switch(Main)
-	end	
+	end
+	
+	self.effectManager:update(dt)
 end
 
 function Battle:draw()
@@ -66,7 +72,10 @@ function Battle:draw()
 	love.graphics.setColor(255, 255, 255)
 	love.graphics.setFont(Fonts.main.title)
 	love.graphics.print("Press escape to back to Main")
+	
+	self.effectManager:draw()
 end
+
 
 function Battle:getWorldPosFromGridIndex(side, gridIndex)
 	local mul, ox

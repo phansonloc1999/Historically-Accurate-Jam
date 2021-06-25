@@ -103,7 +103,7 @@ function HoveredInfo:getSkillInfo(skill)
 		return 'DEAL 250% PHYSICAL DAMAGE TO A SINGLE TARGET'
 		
 	elseif skill == 'divine' then
-		return 'DEAL 80% MAGICAL DAMAGE AND BECOME INVULNERABLE FOR 2 SECONDS'
+		return 'DEAL 80% MAGICAL DAMAGE AND BECOME INVULNERABLE FOR 1.25 SECONDS'
 	
 	elseif skill == 'regenerate' then
 		return 'HEAL ALL TEAMATES EQUAL TO 60% MAGIC DAMAGE'

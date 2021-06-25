@@ -80,6 +80,16 @@ Sprites = {
 		cung = love.graphics.newImage("assets/enemies/cung.png"),
 		khien = love.graphics.newImage("assets/enemies/khien.png"),
 		kiem = love.graphics.newImage("assets/enemies/kiem.png")
+	},
+	
+	effects = {
+		striker = love.graphics.newImage('assets/effects/striker.png'),
+	},
+	
+	statuses = {
+		invulnerable = love.graphics.newImage('assets/statuses/invulnerable.png'),
+		shield = love.graphics.newImage('assets/statuses/shield.png'),
+		stun = love.graphics.newImage('assets/statuses/stun.png'),
 	}
 }
 
@@ -92,7 +102,8 @@ Fonts = {
 		level = love.graphics.newFont("assets/fonts/04B_08__.TTF", 14)
     },
     battle = {
-        damagePopUp = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 24)
+        damagePopUp = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 24),
+        damagePopUpBig = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 32)
     },
     result = {
         title = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 24)
