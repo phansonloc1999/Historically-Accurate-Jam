@@ -93,7 +93,7 @@ function Battle:getWorldPosFromGridIndex(side, gridIndex)
 	return ox + gx * 96 * mul, 180 + gy * 96
 end
 
-function Battle:exit()
+function Battle:leave()
 	Audio.musics.battle:stop()
 end
 
