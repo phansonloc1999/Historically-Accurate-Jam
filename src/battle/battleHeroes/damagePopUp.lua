@@ -65,10 +65,10 @@ function DamagePopUp:onHealthHeal(healthHeal)
 		end,
 		
 		draw = function(self_)
-			love.graphics.setColor(91/255, 149/255, 106/255, self_.opacity)
+			love.graphics.setColor(0, 255, 0, self_.opacity)
 			love.graphics.setFont(Fonts.battle.damagePopUp)
 			local text = '+'..self_.text
-			love.graphics.print(text, self.x + 32, self_.y, 0, self_.scale, self_.scale,
+			love.graphics.print(text, self.x + 70, self_.y, 0, self_.scale, self_.scale,
 					Fonts.battle.damagePopUp:getWidth(text)/2,
 					Fonts.battle.damagePopUp:getHeight()/2)
 		end,
