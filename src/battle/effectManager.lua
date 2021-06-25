@@ -108,7 +108,48 @@ function EffectManager:onSkillCasted(skill, side, casterGridIndex, targetGridInd
 		
 		self:addEffect(effect)
 		
-	elseif skill == 'smash' then
+	
+	elseif skill == 'mandate' then
+		local teamates = GS.current()[side]
+		
+		for i = 1, #teamates do
+			local x, y = self:getWorldPosFromGridIndex(side, teamates[i].gridIndex) 
+		
+			self.timer:every(0.06, function()
+				local effect = {
+					x = x + 28 + math.random(0, 10),
+					y = y + 64,
+					opacity = 0.8,
+					size = 1.6,
+					
+					update = function()
+					end,
+					
+					draw = function(self_)							
+						love.graphics.setColor(192/255, 237/255, 239/255, self_.opacity)
+						love.graphics.rectangle('fill', self_.x, self_.y, 4 * self_.size, 4 * self_.size)
+					end
+					
+				}
+
+				self.timer:tween(0.5, effect, {opacity = 0.4}, 'linear')
+				self.timer:tween(0.47, effect, {size = 0.6}, 'in-cubic')
+
+				local vec = Vector(0, -1)
+				local randomVar = math.random(0, 50)
+				local randomDir = math.random(0, 1)
+				if randomDir == 1 then vec = vec:rotated(math.rad( math.random(-randomVar, 0) )) 
+				elseif randomDir == 0 then vec = vec:rotated(math.rad( math.random(0, randomVar) ))
+				end
+				local normalizedRatio = (67 + math.random(-maxRandomRange, maxRandomRange))
+				self.timer:tween(0.41, effect, 
+						{x = effect.x + vec.x * normalizedRatio, y = effect.y + vec.y * normalizedRatio}, 'out-quad')
+
+				self.timer:after(0.5, function() self:removeEffect(effect) end)
+				
+				self:addEffect(effect)
+			end, 9)
+		end
 	
 	end
 end

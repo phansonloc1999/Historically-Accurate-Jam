@@ -62,6 +62,10 @@ function Battle:update(dt)
 end
 
 function Battle:draw()
+	--love.graphics.setColor(0.6, 0.6, 0.6)
+	love.graphics.setColor(1, 1, 1)
+	love.graphics.draw(Sprites.backgrounds[1], 0, 0, 0, 2, 2)
+
 	for i, ally in ipairs(self.allies) do
 		local x, y = self:getWorldPosFromGridIndex('allies', ally.gridIndex)
 		ally:draw(x, y)
@@ -71,7 +75,7 @@ function Battle:draw()
 		enemy:draw(x, y)
 	end
 
-	love.graphics.setColor(255, 255, 255)
+	love.graphics.setColor(0.92, 0.92, 0.92)
 	love.graphics.setFont(Fonts.main.title)
 	love.graphics.print("Press escape to back to Main")
 	

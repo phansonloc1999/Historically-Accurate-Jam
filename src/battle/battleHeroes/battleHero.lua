@@ -97,12 +97,16 @@ function BattleHero:castSkill(skill)
 	if skill == 'strike' then --------------------------
 		target:takeDamage('magical', self.secondaryStats.magicPower * 2.5, true)
 		
+		AudioManager:playSound("hit1")
+		
 		
 	elseif skill == 'regenerate' then ------------------
 		local teamates = self:getAllTeamates()
 		for i = 1, #teamates do
 			teamates[i]:heal(self.secondaryStats.magicPower * 0.7)
 		end
+		
+		AudioManager:playSound("heal")
 		
 		
 	elseif skill == 'smash' then -----------------------
@@ -117,6 +121,8 @@ function BattleHero:castSkill(skill)
 			end
 		end
 	
+		AudioManager:playSound("hit1")
+	
 	
 	elseif skill == 'rend' then ------------------------
 		target:takeDamage('physical', self.secondaryStats.attackDamage * 2.5)
@@ -129,12 +135,14 @@ function BattleHero:castSkill(skill)
 				teamates[i]:addMana(3)
 			end
 		end
+	
+		AudioManager:playSound('buff')
 		
 		
 	elseif skill == 'divine' then ----------------------
 		self.secondsToEndInvulnerability = 1.25
 		
-		target:takeDamage('magical', self.secondaryStats.magicPower * 0.8, false,"divine")
+		target:takeDamage('magical', self.secondaryStats.magicPower * 0.8, false, "divine")
 		
 		
 	elseif skill == 'disrupt' then ---------------------

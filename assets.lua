@@ -90,6 +90,10 @@ Sprites = {
 		invulnerable = love.graphics.newImage('assets/statuses/invulnerable.png'),
 		shield = love.graphics.newImage('assets/statuses/shield.png'),
 		stun = love.graphics.newImage('assets/statuses/stun.png'),
+	},
+	
+	backgrounds = {
+		[1] = love.graphics.newImage('assets/backgrounds/map 1-10.png')
 	}
 }
 
@@ -113,11 +117,17 @@ Fonts = {
 Audio = {
     sounds = {
         gui1 = love.audio.newSource("assets/sounds/gui1.wav", "static"),
-        gui2 = love.audio.newSource("assets/sounds/gui2.wav", "static")
+        gui2 = love.audio.newSource("assets/sounds/gui2.wav", "static"),
+        
+        hit1 = love.audio.newSource('assets/sounds/hit1.wav', 'static'),
+        heal = love.audio.newSource('assets/sounds/heal.wav', 'static'),
+        buff = love.audio.newSource('assets/sounds/buff.wav', 'static')
     },
     musics = {
-		battle = love.audio.newSource("assets/musics/battle.mp3", "stream")
+			battle = love.audio.newSource("assets/musics/battle.mp3", "stream")
 	}
 }
 
 Audio.sounds.gui2:setPitch(0.83)
+Audio.musics.battle:setVolume(0.75)
+Audio.musics.battle:setPitch(0.812)
