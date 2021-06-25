@@ -21,7 +21,7 @@ function DamagePopUp:draw()
 	end
 end
 
-function DamagePopUp:onDamageTaken(damageTaken)
+function DamagePopUp:onDamageTaken(damageTaken, color)
 	local popup = {
 		y = self.y + 28,
 		text = tostring(damageTaken),
@@ -33,7 +33,7 @@ function DamagePopUp:onDamageTaken(damageTaken)
 		end,
 		
 		draw = function(self_)
-			love.graphics.setColor(170/255, 38/255, 35/255, self_.opacity)
+			love.graphics.setColor(color or {170/255, 38/255, 35/255}, self_.opacity)
 			love.graphics.setFont(Fonts.battle.damagePopUp)
 			local text = '-'..self_.text
 			love.graphics.print(text, self.x + 32, self_.y, 0, self_.scale, self_.scale,

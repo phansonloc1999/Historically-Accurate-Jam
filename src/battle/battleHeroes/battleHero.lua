@@ -128,7 +128,7 @@ function BattleHero:castSkill(skill)
 		self.secondsToEndInvulnerability = 2
 		
 		local target = self:getTarget()
-		target:takeDamage('magical', self.secondaryStats.magicPower * 0.8)
+		target:takeDamage('magical', self.secondaryStats.magicPower * 0.8, false,"divine")
 		
 		
 	elseif skill == 'disrupt' then ---------------------
@@ -238,7 +238,7 @@ function BattleHero:getAllTeamates()
 	return GS.current()[self.side]
 end
 
-function BattleHero:takeDamage(damageType, damage, isTrueDamage)
+function BattleHero:takeDamage(damageType, damage, isTrueDamage, skillName)
 	local totalDamage
 	if self.secondsToEndInvulnerability > 0 then
 		totalDamage = 1
@@ -260,8 +260,14 @@ function BattleHero:takeDamage(damageType, damage, isTrueDamage)
 	
 	self.healthBar.value = self.healthBar.value - totalDamage
 	
-	self.damagePopUp:onDamageTaken(totalDamage)
-	
+	local damagePopUpColor
+	if (skillName == "divine") then
+		damagePopUpColor = {0, 0, 0}
+	end
+	if (isTrueDamage) then
+		damagePopUpColor = {255, 255, 255}
+	end
+	self.damagePopUp:onDamageTaken(totalDamage, damagePopUpColor)
 
 	if (self.healthBar.value <= 0) then
 		self.isDead = true
