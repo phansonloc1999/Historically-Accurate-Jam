@@ -4,7 +4,7 @@ return {
 		enemies = {
 			{
 				hero = {
-					stats = {str = 0, dur = 9999, int = 4, agi = 4},
+					stats = {str = 4, dur = 4, int = 4, agi = 4},
 					skill = "strike",
 					sprite = Sprites.enemies.kiem
 				},
