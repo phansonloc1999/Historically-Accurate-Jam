@@ -115,7 +115,9 @@ Audio = {
         gui1 = love.audio.newSource("assets/sounds/gui1.wav", "static"),
         gui2 = love.audio.newSource("assets/sounds/gui2.wav", "static")
     },
-    songs = {}
+    musics = {
+		battle = love.audio.newSource("assets/musics/battle.mp3", "stream")
+	}
 }
 
 Audio.sounds.gui2:setPitch(0.83)

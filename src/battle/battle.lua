@@ -24,6 +24,8 @@ function Battle:enter(from, allies, enemies, isReplay)
 	self.isReplay = isReplay or false
 	
 	self.effectManager = EffectManager()
+
+	Audio.musics.battle:play()
 end
 
 function Battle:update(dt)
@@ -89,6 +91,10 @@ function Battle:getWorldPosFromGridIndex(side, gridIndex)
 	local gy = (gridIndex - gx) / 3 - 1
 	
 	return ox + gx * 96 * mul, 180 + gy * 96
+end
+
+function Battle:exit()
+	Audio.musics.battle:stop()
 end
 
 return Battle
