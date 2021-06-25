@@ -93,7 +93,8 @@ function love.load()
             }
         },
         formation = {
-            [5] = 2
+            [1] = 2,
+            [2] = 1
         },
         levels = levels
     }

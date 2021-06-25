@@ -47,6 +47,10 @@ function Battle:update(dt)
 			table.remove(self.enemies, index)
 		end
 	end
+
+	if (love.keyboard.isDown("escape")) then
+		GS.switch(Main)
+	end	
 end
 
 function Battle:draw()
@@ -58,6 +62,10 @@ function Battle:draw()
 		local x, y = self:getWorldPosFromGridIndex('enemies', enemy.gridIndex)
 		enemy:draw(x, y)
 	end
+
+	love.graphics.setColor(255, 255, 255)
+	love.graphics.setFont(Fonts.main.title)
+	love.graphics.print("Press escape to back to Main")
 end
 
 function Battle:getWorldPosFromGridIndex(side, gridIndex)
