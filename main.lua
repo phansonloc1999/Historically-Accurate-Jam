@@ -29,7 +29,7 @@ function love.load()
                 upgrades = {str = 0, dur = 0, int = 0, agi = 0}
             },
             {
-                unlocked = true,
+                unlocked = false,
                 name = "Au Co",
                 sprite = Sprites.heroes.auCo.full,
                 icon = Sprites.heroes.auCo.icon,
@@ -38,7 +38,7 @@ function love.load()
                 upgrades = {str = 0, dur = 0, int = 0, agi = 0}
             },
             {
-                unlocked = true,
+                unlocked = false,
                 name = "Son Tinh",
                 sprite = Sprites.heroes.sonTinh.full,
                 icon = Sprites.heroes.sonTinh.icon,
@@ -47,7 +47,7 @@ function love.load()
                 upgrades = {str = 0, dur = 0, int = 0, agi = 0}
             },
             {
-                unlocked = true,
+                unlocked = false,
                 name = "Thuy Tinh",
                 sprite = Sprites.heroes.thuyTinh.full,
                 icon = Sprites.heroes.thuyTinh.icon,
@@ -56,7 +56,7 @@ function love.load()
                 upgrades = {str = 0, dur = 0, int = 0, agi = 0}
             },
             {
-                unlocked = true,
+                unlocked = false,
                 name = "Hung Vuong",
                 sprite = Sprites.heroes.hungVuong.full,
                 icon = Sprites.heroes.hungVuong.icon,
@@ -65,7 +65,7 @@ function love.load()
                 upgrades = {str = 0, dur = 0, int = 0, agi = 0}
             },
             {
-                unlocked = true,
+                unlocked = false,
                 name = "Chu Dong Tu", -- Can use magic according to myth => high int and agi, low str dur
                 sprite = Sprites.heroes.chuDongTu.full,
                 icon = Sprites.heroes.chuDongTu.icon,
@@ -74,7 +74,7 @@ function love.load()
                 upgrades = {str = 0, dur = 0, int = 0, agi = 0}
             },
             {
-                unlocked = true,
+                unlocked = false,
                 name = "Thach Sanh", -- High str + dur, low int, avg agi
                 sprite = Sprites.heroes.thachSanh.full,
                 icon = Sprites.heroes.thachSanh.icon,
@@ -83,7 +83,7 @@ function love.load()
                 upgrades = {str = 0, dur = 0, int = 0, agi = 0}
             },
             {
-                unlocked = true,
+                unlocked = false,
                 name = "Thanh Giong",
                 sprite = Sprites.heroes.thanhGiong.full,
                 icon = Sprites.heroes.thanhGiong.icon,
@@ -93,8 +93,7 @@ function love.load()
             }
         },
         formation = {
-            [1] = 2,
-            [2] = 1
+            [1] = 1
         },
         levels = levels
     }

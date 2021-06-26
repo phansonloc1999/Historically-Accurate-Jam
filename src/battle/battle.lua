@@ -5,7 +5,7 @@ local EffectManager = require 'src.battle.effectManager'
 
 local Battle = {}
 
-function Battle:enter(from, allies, enemies, isReplay)
+function Battle:enter(from, allies, enemies, isReplay, currentLevel)
 	self.allies = {}
 	for i = 1, #allies do
 		local ally = allies[i]
@@ -20,7 +20,7 @@ function Battle:enter(from, allies, enemies, isReplay)
 				BattleHero('enemies', enemy.gridIndex, enemy.hero.stats, enemy.hero.upgrades, enemy.hero.skill, enemy.hero.sprite))
 	end
 	
-	self.battleData = {allies = allies, enemies = enemies}
+	self.battleData = {allies = allies, enemies = enemies, level = currentLevel}
 	self.isReplay = isReplay or false
 	
 	self.effectManager = EffectManager()

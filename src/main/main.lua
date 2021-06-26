@@ -72,19 +72,25 @@ function Main:update(dt)
     -- Main buttons
     if self.currentTab == "map" then
         for i = 1, #gameData.levels do
-            if
+            local buttonText = tostring(i)
+            if (levels[i].indexOfUnlockedHero) then
+                buttonText = buttonText .. "\n\nWin to unlock " .. gameData.heroList[levels[i].indexOfUnlockedHero].name
+            end
+
+            local button =
                 self.suit:Button(
-                    "level " .. tostring(i),
-                    {font = Fonts.main.level},
-                    160 + (LEVEL_BUTTON_SPACING_X + LEVEL_BUTTON_WIDTH) * (i - 1),
-                    180,
-                    LEVEL_BUTTON_WIDTH,
-                    LEVEL_BUTTON_HEIGHT
-                ).hit
-             then
+                buttonText,
+                {font = Fonts.main.level, valign = "top"},
+                160 + (LEVEL_BUTTON_SPACING_X + LEVEL_BUTTON_WIDTH) * (i - 1),
+                180,
+                LEVEL_BUTTON_WIDTH,
+                LEVEL_BUTTON_HEIGHT
+            )
+
+            if button.hit then
                 gameData.formation = self.armyGrid.heroIndexes
 
-                GS.switch(Battle, self.armyGrid:getAllies(), gameData.levels[i].enemies)
+                GS.switch(Battle, self.armyGrid:getAllies(), gameData.levels[i].enemies, false, i)
             end
         end
     elseif self.currentTab == "army" then

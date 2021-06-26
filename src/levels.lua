@@ -10,7 +10,8 @@ return {
 				},
 				gridIndex = 4
 			},
-		}
+		},
+		indexOfUnlockedHero = 2 -- Win to unlock Au co
 	},
 
 	{

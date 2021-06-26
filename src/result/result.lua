@@ -6,6 +6,11 @@ function Result:enter(from, winner, battleData, isReplay)
 	if winner == 'allies' then
 		self.message = 'VICTORY'
 		self.color = {252/255, 196/255, 141/255}
+
+		-- Unlock a hero after winning that level (if any)
+		if levels[battleData.level].indexOfUnlockedHero then
+			gameData.heroList[levels[battleData.level].indexOfUnlockedHero].unlocked = true 
+		end
 	elseif winner == 'enemies' then
 		self.message = 'DEFEATED'
 		self.color = {97/255, 156/255, 195/255}
@@ -21,7 +26,7 @@ function Result:update(dt)
 	if self.suit:ImageButton(Sprites.gui.result.replay_normal,
 			{hovered = Sprites.gui.result.replay_hovered, active = Sprites.gui.result.replay_active},
 			312, 288).hit then
-		GS.switch(Battle, self.battleData.allies, self.battleData.enemies, true)
+		GS.switch(Battle, self.battleData.allies, self.battleData.enemies, true, self.battleData.level)
 	end
 	if self.suit:ImageButton(Sprites.gui.result.exit_normal,
 			{hovered = Sprites.gui.result.exit_hovered, active = Sprites.gui.result.exit_active},
