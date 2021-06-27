@@ -10,7 +10,8 @@ return {
 				},
 				gridIndex = 5
 			},
-		}
+		},
+		indexOfUnlockedHero = 2
 	},
 	{ --lv2
 		passed = false,
@@ -54,7 +55,8 @@ return {
 				gridIndex = 6
 			},
 			
-		}
+		},
+		indexOfUnlockedHero = 3
 	},
 	{ --lv4
 		passed = false,
@@ -121,7 +123,8 @@ return {
 				},
 				gridIndex = 9
 			},								
-		}
+		},
+		indexOfUnlockedHero = 4
 	},
 	{ --lv6
 		passed = false,
@@ -187,7 +190,8 @@ return {
 				},
 				gridIndex = 7
 			},							
-		}
+		},
+		indexOfUnlockedHero = 5
 	},
 	{ --lv8
 		passed = false,
@@ -307,6 +311,7 @@ return {
 				gridIndex = 3
 			},
 						
-		}
+		},
+		indexOfUnlockedHero = 6
 	},									
 }
