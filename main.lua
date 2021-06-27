@@ -19,7 +19,7 @@ function love.load()
 	math.randomseed(os.time())
 
     gameData = {
-        crystals = 5000,
+        crystals = 0,
         heroList = {
 						{
                 unlocked = true,
