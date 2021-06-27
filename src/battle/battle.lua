@@ -76,7 +76,7 @@ function Battle:update(dt)
 				self.isDelayEnded = true
 			
 				self.resultScreen.message = 'DEFEATED'
-				self.color = {97/255, 156/255, 195/255}
+				self.resultScreen.color = {97/255, 156/255, 195/255}
 				
 				if self.isReplay then self.reward = oldReward
 				else
