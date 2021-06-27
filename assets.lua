@@ -99,6 +99,9 @@ Sprites = {
 }
 
 Fonts = {
+		menu = {
+				bigTitle = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 32)
+		},
     main = {
         heroSelectionBig = love.graphics.newFont("assets/fonts/04B_08__.TTF", 32),
         heroSelectionMedium = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 24),
@@ -130,5 +133,5 @@ Audio = {
 }
 
 Audio.sounds.gui2:setPitch(0.83)
-Audio.musics.battle:setVolume(0.75)
+Audio.musics.battle:setVolume(0.64)
 Audio.musics.battle:setPitch(0.812)
