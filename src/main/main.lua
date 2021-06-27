@@ -72,8 +72,8 @@ function Main:update(dt)
     -- Main buttons
     if self.currentTab == "map" then
         for i = 1, #gameData.levels do
-						local gx = i % 8
-						local gy = (i - gx) / 8 + 1
+						local gx = (i - 1) % 7
+						local gy = (i - gx) / 7
 						
             local buttonText = tostring(i)	
             if (levels[i].indexOfUnlockedHero) then
@@ -84,8 +84,8 @@ function Main:update(dt)
                 self.suit:Button(
                 buttonText,
                 {font = Fonts.main.level, valign = (levels[i].indexOfUnlockedHero) and "top" or nil},
-                160 + (LEVEL_BUTTON_SPACING_X + LEVEL_BUTTON_WIDTH) * (gx - 1),
-                30 + (LEVEL_BUTTON_SPACING_X + LEVEL_BUTTON_WIDTH) * (gy - 1),
+                160 + (LEVEL_BUTTON_SPACING_X + LEVEL_BUTTON_WIDTH) * gx,
+                30 + (LEVEL_BUTTON_SPACING_X + LEVEL_BUTTON_WIDTH) * gy,
                 LEVEL_BUTTON_WIDTH,
                 LEVEL_BUTTON_HEIGHT
             )
