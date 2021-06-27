@@ -2,10 +2,11 @@ local Result = require 'src.result.result'
 
 local BattleHero = require 'src.battle.battleHeroes.battleHero'
 local EffectManager = require 'src.battle.effectManager'
+local TeamHealthBar = require 'src.battle.teamHealthBar'
 
 local Battle = {}
 
-function Battle:enter(from, allies, enemies, isReplay, currentLevel)
+function Battle:enter(from, allies, enemies, isReplay, oldReward, levelIndex)
 	self.allies = {}
 	for i = 1, #allies do
 		local ally = allies[i]
@@ -20,19 +21,26 @@ function Battle:enter(from, allies, enemies, isReplay, currentLevel)
 				BattleHero('enemies', enemy.gridIndex, enemy.hero.stats, enemy.hero.upgrades, enemy.hero.skill, enemy.hero.sprite))
 	end
 	
-	self.battleData = {allies = allies, enemies = enemies, level = currentLevel}
+	self.battleData = {allies = allies, enemies = enemies, level = levelIndex}
 	self.isReplay = isReplay or false
+	self.oldReward = oldReward
 	
+	self.teamHealthBar = TeamHealthBar(self.allies, self.enemies)
 	self.effectManager = EffectManager()
+
+	self.timer = Timer.new()
 
 	Audio.musics.battle:play()
 end
 
 function Battle:update(dt)
+	self.timer:update(dt)
+
 	if (#self.enemies <= 0) then
-		GS.switch(Result, "allies", self.battleData, self.isReplay)
+		self.timer:after(1, function() GS.switch(Result, "allies", self.battleData, self.isReplay, self.oldReward) end)
+		
 	elseif (#self.allies <= 0) then
-		GS.switch(Result, "enemies", self.battleData, self.isReplay)
+		self.timer:after(1, function() GS.switch(Result, "enemies", self.battleData, self.isReplay, self.oldReward) end)
 	end
 
 	for i, ally in ipairs(self.allies) do
@@ -62,8 +70,7 @@ function Battle:update(dt)
 end
 
 function Battle:draw()
-	--love.graphics.setColor(0.6, 0.6, 0.6)
-	love.graphics.setColor(1, 1, 1)
+	love.graphics.setColor(0.8, 0.8, 0.8)
 	love.graphics.draw(Sprites.backgrounds[1], 0, 0, 0, 2, 2)
 
 	for i, ally in ipairs(self.allies) do
@@ -76,25 +83,27 @@ function Battle:draw()
 	end
 
 	love.graphics.setColor(0.92, 0.92, 0.92)
-	love.graphics.setFont(Fonts.main.title)
-	love.graphics.print("Press escape to back to Main")
+	love.graphics.setFont(Fonts.main.heroSelectionSmall)
+	love.graphics.print("Press escape to exit", 4, 522)
 	
 	self.effectManager:draw()
+	
+	self.teamHealthBar:draw()
 end
 
 
 function Battle:getWorldPosFromGridIndex(side, gridIndex)
 	local mul, ox
 	if side == 'allies' then
-		mul, ox = 1, 100
+		mul, ox = 1, 72
 	elseif side == 'enemies' then
-		mul, ox = -1, 640
+		mul, ox = -1, 680
 	end
 	
 	local gx = (gridIndex - 1) % 3
 	local gy = (gridIndex - gx) / 3 - 1
 	
-	return ox + gx * 96 * mul, 180 + gy * 96
+	return ox + gx * 96 * mul, 236 + gy * 96
 end
 
 function Battle:leave()

@@ -85,6 +85,8 @@ function HealthBar:drawHealth(x, y)
 	else
 		love.graphics.setColor(45/255, 60/255, 113/255)
 	end
-	
 	love.graphics.rectangle('fill', x + 14, y + 4, 34 * healthRatio, 8)
+	
+	love.graphics.setColor(0.92, 0.92, 0.92, 0.09)
+	love.graphics.rectangle('fill', x + 14, y + 4, 34 * healthRatio, 3)
 end

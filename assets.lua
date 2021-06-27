@@ -37,7 +37,8 @@ Sprites = {
 			exit_active = love.graphics.newImage("assets/gui/result/exit_active.png")
 		},
 		battle = {
-			healthBar = love.graphics.newImage('assets/gui/battle/healthbar.png')
+			healthBar = love.graphics.newImage('assets/gui/battle/healthbar.png'),
+			teamHealthBar = love.graphics.newImage('assets/gui/battle/teamHealthbar.png')
 		}
 	},
     
@@ -103,7 +104,7 @@ Fonts = {
         heroSelectionMedium = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 24),
         heroSelectionSmall = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 16),
         title = love.graphics.newFont("assets/fonts/04B_08__.TTF", 24),
-		level = love.graphics.newFont("assets/fonts/04B_08__.TTF", 14)
+        level = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 16)
     },
     battle = {
         damagePopUp = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 24),

@@ -156,17 +156,8 @@ end
 
 
 function EffectManager:getWorldPosFromGridIndex(side, gridIndex)
-	local mul, ox
-	if side == 'allies' then
-		mul, ox = 1, 100
-	elseif side == 'enemies' then
-		mul, ox = -1, 640
-	end
-	
-	local gx = (gridIndex - 1) % 3
-	local gy = (gridIndex - gx) / 3 - 1
-	
-	return ox + gx * 96 * mul, 180 + gy * 96
+	local x, y = GS.current():getWorldPosFromGridIndex(side, gridIndex)
+	return x, y
 end
 
 return EffectManager

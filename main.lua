@@ -16,11 +16,22 @@ gameData = nil
 levels = require "src.levels"
 
 function love.load()
+	math.randomseed(os.time())
+
     gameData = {
         crystals = 5000,
         heroList = {
-            {
+						{
                 unlocked = true,
+                name = "Thach Sanh",
+                sprite = Sprites.heroes.thachSanh.full,
+                icon = Sprites.heroes.thachSanh.icon,
+                stats = {str = 10, dur = 7, int = 6, agi = 6},
+                skill = "strike",
+                upgrades = {str = 0, dur = 0, int = 0, agi = 0}
+            },
+            {
+                unlocked = false,
                 name = "Lac Long Quan",
                 sprite = Sprites.heroes.lacLongQuan.full,
                 icon = Sprites.heroes.lacLongQuan.icon,
@@ -75,15 +86,6 @@ function love.load()
             },
             {
                 unlocked = false,
-                name = "Thach Sanh", -- High str + dur, low int, avg agi
-                sprite = Sprites.heroes.thachSanh.full,
-                icon = Sprites.heroes.thachSanh.icon,
-                stats = {str = 12, dur = 8, int = 2, agi = 8},
-                skill = "strike", -- Deal physical damage, ignore armor/durabity
-                upgrades = {str = 0, dur = 0, int = 0, agi = 0}
-            },
-            {
-                unlocked = false,
                 name = "Thanh Giong",
                 sprite = Sprites.heroes.thanhGiong.full,
                 icon = Sprites.heroes.thanhGiong.icon,
@@ -93,7 +95,7 @@ function love.load()
             }
         },
         formation = {
-            [1] = 1
+            [5] = 1
         },
         levels = levels
     }

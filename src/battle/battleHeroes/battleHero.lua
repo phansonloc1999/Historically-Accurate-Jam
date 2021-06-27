@@ -80,12 +80,17 @@ end
 
 function BattleHero:attack()
 	if self.mana >= 8 and self.isDead == false then
-		self.mana = 0
-		self:castSkill(self.skill)
-	
+		local allTargets = self:getAllTargets()
+		if #allTargets > 0 then
+			self.mana = 0
+			self:castSkill(self.skill)
+		end
+		
 	else
 		local target = self:getTarget()
-		target:takeDamage('physical', self.secondaryStats.attackDamage)
+		if target then
+			target:takeDamage('physical', self.secondaryStats.attackDamage)
+		end
 
 		self:addMana(1)
 	end
@@ -153,7 +158,7 @@ function BattleHero:castSkill(skill)
 	elseif skill == 'bastion'	then ---------------------
 		local teamates = self:getAllTeamates()
 		for i = 1, #teamates do
-			teamates[i].secondsToEndArmored = 1.5
+			teamates[i].secondsToEndShield = 1.5
 		end
 		
 		--local target = self:getTarget()
