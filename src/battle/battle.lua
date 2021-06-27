@@ -63,7 +63,7 @@ function Battle:update(dt)
 				
 				if self.isReplay then self.reward = oldReward
 				else
-					self.reward = 15 + self.battleData.level * 40 + math.random(0, self.battleData.level * 5)
+					self.reward = math.ceil(self.battleData.level / 2) * 20
 					gameData.crystals = gameData.crystals + self.reward
 				end
 				
@@ -80,7 +80,8 @@ function Battle:update(dt)
 				
 				if self.isReplay then self.reward = oldReward
 				else
-					self.reward = 4 + self.battleData.level * 4 + math.random(0, self.battleData.level)
+					self.reward = 0
+					--self.reward = 4 + self.battleData.level * 4 + math.random(0, self.battleData.level)
 					gameData.crystals = gameData.crystals + self.reward
 				end
 				

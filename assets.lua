@@ -7,25 +7,36 @@ Sprites = {
 			map_normal = love.graphics.newImage("assets/gui/main/map_normal.png"),
 			map_hovered = love.graphics.newImage("assets/gui/main/map_hovered.png"),
 			map_active = love.graphics.newImage("assets/gui/main/map_active.png"),
+			
 			army_normal = love.graphics.newImage("assets/gui/main/army_normal.png"),
 			army_hovered = love.graphics.newImage("assets/gui/main/army_hovered.png"),
 			army_active = love.graphics.newImage("assets/gui/main/army_active.png"),
+			
 			menu_normal = love.graphics.newImage("assets/gui/main/menu_normal.png"),
 			menu_hovered = love.graphics.newImage("assets/gui/main/menu_hovered.png"),
 			menu_active = love.graphics.newImage("assets/gui/main/menu_active.png"),
+			
 			emptySlot = love.graphics.newImage("assets/gui/main/emptySlot.png"),
 			occupiedSlot = love.graphics.newImage("assets/gui/main/occupiedSlot.png"),
 			occupiedSlotFrame = love.graphics.newImage("assets/gui/main/occupiedSlotFrame.png"),
+			
 			heroListBackground = love.graphics.newImage("assets/gui/main/heroListBackground.png"),
 			heroListBuffer = love.graphics.newImage("assets/gui/main/heroListBuffer.png"),
+			
 			strength = love.graphics.newImage("assets/gui/main/strength.png"),
 			durability = love.graphics.newImage("assets/gui/main/durability.png"),
 			intelligence = love.graphics.newImage("assets/gui/main/intelligence.png"),
 			agility = love.graphics.newImage("assets/gui/main/agility.png"),
+			
 			selectionBackground = love.graphics.newImage("assets/gui/main/selectionBackground.png"),
+			
 			upgradeButton_normal = love.graphics.newImage("assets/gui/main/upgradeButton_normal.png"),
 			upgradeButton_hovered = love.graphics.newImage("assets/gui/main/upgradeButton_hovered.png"),
-			upgradeButton_active = love.graphics.newImage("assets/gui/main/upgradeButton_active.png")
+			upgradeButton_active = love.graphics.newImage("assets/gui/main/upgradeButton_active.png"),
+			
+			level_normal = love.graphics.newImage('assets/gui/main/level_normal.png'),
+			level_hovered = love.graphics.newImage('assets/gui/main/level_hovered.png'),
+			level_active = love.graphics.newImage('assets/gui/main/level_active.png'),
 		},
 		result = {
 			background = love.graphics.newImage("assets/gui/result/background.png"),
@@ -107,7 +118,7 @@ Fonts = {
         heroSelectionMedium = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 24),
         heroSelectionSmall = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 16),
         title = love.graphics.newFont("assets/fonts/04B_08__.TTF", 24),
-        level = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 16)
+        level = love.graphics.newFont("assets/fonts/04B_08__.TTF", 16)
     },
     battle = {
         damagePopUp = love.graphics.newFont("assets/fonts/04B_03B_.TTF", 24),

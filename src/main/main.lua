@@ -6,15 +6,14 @@ local HoveredInfo = require "src.main.armyTab.hoveredInfo"
 
 local Main = {}
 
-local LEVEL_BUTTON_WIDTH = 80
-local LEVEL_BUTTON_HEIGHT = 80
-local LEVEL_BUTTON_SPACING_X = 10
+local LEVEL_BUTTON_WIDTH = 90
+local LEVEL_BUTTON_HEIGHT = 90
+local LEVEL_BUTTON_SPACING_X = 30
 
 function Main:enter(from)
     self.currentTab = "map"
 
-    -- Map tab
-
+    
     -- Army tab
     self.selection = nil
     self.heroList = HeroList(gameData.heroList)
@@ -24,6 +23,29 @@ function Main:enter(from)
     self.hoveredInfo = HoveredInfo()
 
     self.suit = Suit.new()
+    
+    self.suit.theme = setmetatable({}, {__index = Suit.theme})
+	
+	
+	-- Map tab
+	self.suit.theme.Button = function(text, opt, x, y, w, h)
+		local sprite
+		if opt.state == 'normal' then
+			sprite = Sprites.gui.main.level_normal
+		elseif opt.state == 'hovered' then
+			sprite = Sprites.gui.main.level_hovered
+		elseif opt.state == 'active' then
+			sprite = Sprites.gui.main.level_active
+		end
+	
+		love.graphics.setColor(1, 1, 1)
+		love.graphics.draw(sprite, x, y)
+	
+		love.graphics.setColor(0.1, 0.1, 0.1)
+		love.graphics.setFont(opt.font)
+		y = y + self.suit.theme.getVerticalOffsetForAlign(opt.valign, opt.font, h)
+		love.graphics.printf(text, x+2, y, w-4, opt.align or "center")
+	end
 end
 
 function Main:update(dt)
@@ -72,8 +94,8 @@ function Main:update(dt)
     -- Main buttons
     if self.currentTab == "map" then
         for i = 1, #gameData.levels do
-						local gx = (i - 1) % 7
-						local gy = (i - gx) / 7
+						local gx = (i - 1) % 5
+						local gy = (i - gx) / 5
 						
             local buttonText = tostring(i)	
             if (levels[i].indexOfUnlockedHero) then
@@ -84,8 +106,8 @@ function Main:update(dt)
                 self.suit:Button(
                 buttonText,
                 {font = Fonts.main.level, valign = (levels[i].indexOfUnlockedHero) and "top" or nil},
-                160 + (LEVEL_BUTTON_SPACING_X + LEVEL_BUTTON_WIDTH) * gx,
-                30 + (LEVEL_BUTTON_SPACING_X + LEVEL_BUTTON_WIDTH) * gy,
+                174 + (LEVEL_BUTTON_SPACING_X + LEVEL_BUTTON_WIDTH) * gx,
+                20 + (LEVEL_BUTTON_SPACING_X + LEVEL_BUTTON_WIDTH) * gy,
                 LEVEL_BUTTON_WIDTH,
                 LEVEL_BUTTON_HEIGHT
             )
