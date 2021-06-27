@@ -172,7 +172,7 @@ function Battle:draw()
 		love.graphics.print('REWARD', 368, 204, 0, 1, 1)
 
 		love.graphics.setFont(Fonts.main.heroSelectionMedium)
-		love.graphics.print(tostring(self.reward), 386, 234, 0, 1, 1,
+		love.graphics.print(tostring(self.reward or 0), 386, 234, 0, 1, 1,
 				Fonts.main.heroSelectionMedium:getWidth(tostring(self.reward))/2)
 		
 		love.graphics.setColor(1, 1, 1)
