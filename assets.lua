@@ -91,7 +91,9 @@ Sprites = {
 	enemies = {
 		cung = love.graphics.newImage("assets/enemies/cung.png"),
 		khien = love.graphics.newImage("assets/enemies/khien.png"),
-		kiem = love.graphics.newImage("assets/enemies/kiem.png")
+		kiem = love.graphics.newImage("assets/enemies/kiem.png"),
+		mage = love.graphics.newImage("assets/enemies/mage.png"),
+		giant = love.graphics.newImage("assets/enemies/giant.png"),
 	},
 	
 	effects = {
