@@ -26,7 +26,7 @@ function love.load()
                 name = "Thach Sanh",
                 sprite = Sprites.heroes.thachSanh.full,
                 icon = Sprites.heroes.thachSanh.icon,
-                stats = {str = 10, dur = 7, int = 6, agi = 6},
+                stats = {str = 1000, dur = 7, int = 6, agi = 6},
                 skill = "strike",
                 upgrades = {str = 0, dur = 0, int = 0, agi = 0}
             },

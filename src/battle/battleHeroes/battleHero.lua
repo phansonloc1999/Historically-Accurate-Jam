@@ -21,8 +21,8 @@ function BattleHero:initialize(side, gridIndex, stats, upgrades, skill, sprite)
 		magicPower = 15 + self.primaryStats.int * 2,
 		
 		hp = 46 + self.primaryStats.dur * 18,
-		armor = 0 + self.primaryStats.agi * 1,
-		magicResist = 0 + self.primaryStats.int * 1.5
+		armor = 0 + self.primaryStats.str * 0.3 + self.primaryStats.dur * 0.4,
+		magicResist = 0 + self.primaryStats.agi * 0.3 + self.primaryStats.int * 0.5,
 	}
 	self.skill = skill
 	
@@ -130,7 +130,12 @@ function BattleHero:castSkill(skill)
 	
 	
 	elseif skill == 'rend' then ------------------------
-		target:takeDamage('physical', self.secondaryStats.attackDamage * 2.5)
+		target:takeDamage('physical', self.secondaryStats.attackDamage * 2)
+		
+		GS.current().timer:after(0.03, function()
+			local target = self:getTarget()
+			target:takeDamage('physical', self.secondaryStats.attackDamage * 2)
+		end)
 		
 	
 	elseif skill == 'mandate' then ---------------------
@@ -160,9 +165,6 @@ function BattleHero:castSkill(skill)
 		for i = 1, #teamates do
 			teamates[i].secondsToEndShield = 1.5
 		end
-		
-		--local target = self:getTarget()
-		--target:takeDamage('magical', self.secondaryStats.magicPower * 1.0)
 	
 	end
 	
