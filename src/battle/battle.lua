@@ -147,7 +147,7 @@ function Battle:draw()
 	end
 
 	love.graphics.setColor(0.92, 0.92, 0.92)
-	love.graphics.setFont(Fonts.main.heroSelectionSmall)
+	love.graphics.setFont(Fonts.main.title)
 	love.graphics.print("Press escape to exit", 4, 522)
 	
 	self.effectManager:draw()
@@ -163,7 +163,7 @@ function Battle:draw()
 		love.graphics.setColor(1, 1, 1)
 		love.graphics.draw(Sprites.gui.result.background, 300, 150, 0, 2, 2)
 		
-		love.graphics.setColor(self.resultScreen.color)
+		love.graphics.setColor(self.resultScreen.color or {252/255, 196/255, 141/255})
 		love.graphics.setFont(Fonts.result.title)
 		love.graphics.print(self.resultScreen.message, 400, 168, 0, 1, 1,
 				Fonts.result.title:getWidth(self.resultScreen.message)/2)
