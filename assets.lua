@@ -107,7 +107,9 @@ Sprites = {
 	},
 	
 	backgrounds = {
-		[1] = love.graphics.newImage('assets/backgrounds/map 1-10.png')
+		[1] = love.graphics.newImage('assets/backgrounds/map 1-10.png'),
+		[2] = love.graphics.newImage('assets/backgrounds/map 11-19.png'),
+		[3] = love.graphics.newImage('assets/backgrounds/map 20.png'),
 	}
 }
 

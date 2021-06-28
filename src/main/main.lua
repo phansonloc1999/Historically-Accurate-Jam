@@ -37,6 +37,10 @@ function Main:enter(from)
 		elseif opt.state == 'active' then
 			sprite = Sprites.gui.main.level_active
 		end
+		
+		if opt.level ~= 1 and gameData.levels[opt.level-1].passed == false then
+			sprite = Sprites.gui.main.level_active
+		end
 	
 		love.graphics.setColor(1, 1, 1)
 		love.graphics.draw(sprite, x, y)
@@ -105,7 +109,7 @@ function Main:update(dt)
             local button =
                 self.suit:Button(
                 buttonText,
-                {font = Fonts.main.level, valign = (levels[i].indexOfUnlockedHero) and "top" or nil},
+                {font = Fonts.main.level, valign = (levels[i].indexOfUnlockedHero) and "top" or nil, level = i},
                 174 + (LEVEL_BUTTON_SPACING_X + LEVEL_BUTTON_WIDTH) * gx,
                 20 + (LEVEL_BUTTON_SPACING_X + LEVEL_BUTTON_WIDTH) * gy,
                 LEVEL_BUTTON_WIDTH,
@@ -113,9 +117,11 @@ function Main:update(dt)
             )
 
             if button.hit then
-                gameData.formation = self.armyGrid.heroIndexes
+							if i == 1 or gameData.levels[i-1].passed then
+								gameData.formation = self.armyGrid.heroIndexes
 
-                GS.switch(Battle, self.armyGrid:getAllies(), gameData.levels[i].enemies, false, nil, i)
+								GS.switch(Battle, self.armyGrid:getAllies(), gameData.levels[i].enemies, false, nil, i)
+							end
             end
         end
     elseif self.currentTab == "army" then

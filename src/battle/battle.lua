@@ -61,6 +61,8 @@ function Battle:update(dt)
 					gameData.heroList[levels[self.battleData.level].indexOfUnlockedHero].unlocked = true 
 				end
 				
+				gameData.levels[self.battleData.level].passed = true
+				
 				if self.isReplay then self.reward = oldReward
 				else
 					self.reward = math.ceil(self.battleData.level / 2) * 20
@@ -81,7 +83,6 @@ function Battle:update(dt)
 				if self.isReplay then self.reward = oldReward
 				else
 					self.reward = 0
-					--self.reward = 4 + self.battleData.level * 4 + math.random(0, self.battleData.level)
 					gameData.crystals = gameData.crystals + self.reward
 				end
 				
@@ -135,7 +136,13 @@ end
 
 function Battle:draw()
 	love.graphics.setColor(0.8, 0.8, 0.8)
-	love.graphics.draw(Sprites.backgrounds[1], 0, 0, 0, 2, 2)
+	if self.battleData.level <= 10 then
+		love.graphics.draw(Sprites.backgrounds[1], 0, 0, 0, 2, 2)
+	elseif self.battleData.level <= 19 then
+		love.graphics.draw(Sprites.backgrounds[2], 0, 0, 0, 2, 2)
+	else
+		love.graphics.draw(Sprites.backgrounds[3], 0, 0, 0, 2, 2)
+	end
 
 	for i, ally in ipairs(self.allies) do
 		local x, y = self:getWorldPosFromGridIndex('allies', ally.gridIndex)
